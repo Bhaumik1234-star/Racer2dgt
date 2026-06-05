@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Car
+
 # Top Speed of the car
 @export var max_speed: float = 380.0
 
@@ -7,13 +9,18 @@ extends Area2D
 @export var friction: float = 300.0
 
 # How fast the car speeds up
-@export var acceleration: float = 150.0
+@export var acceleration: float = 300
 
 # How fast the car turns
-@export var steer_strenght: float = 6.0
+@export var steer_strenght: float = 3.0
 
 # Minimum turing power at high speed
 @export var min_steer_factor: float = 0.5
+
+@export var bounce_time: float = 0.2
+
+@export var bounce_force: float = 10.0
+
 
 # Player input
 var _throttle: float = 0.0
@@ -67,4 +74,14 @@ func get_steer_factor() -> float:
 func apply_rotation(delta: float) -> void:
 	# Turn the car left or right based on player input
 	rotate(steer_strenght * delta * _steer)
+	
+func bounce() -> void:
+	set_physics_process(false)
+	_velocity = 0.0
+	position += -transform.x * bounce_force
+	await get_tree().create_timer(bounce_time).timeout
+	set_physics_process(true)
+	
+func hit_boundary() -> void:
+	bounce()
  

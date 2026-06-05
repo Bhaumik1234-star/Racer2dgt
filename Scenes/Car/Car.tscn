@@ -8,6 +8,8 @@ radius = 15.0
 height = 74.0
 
 [node name="Car" type="Area2D" unique_id=339257769]
+scale = Vector2(0.7069788, 0.7069788)
+collision_mask = 0
 script = ExtResource("1_6tdsx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1678045938]
@@ -19,3 +21,6 @@ texture = ExtResource("1_fnsqd")
 position = Vector2(0, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_fnsqd")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1477794479]
+zoom = Vector2(1.4, 1.4)
