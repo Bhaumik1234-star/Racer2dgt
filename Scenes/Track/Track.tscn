@@ -4,6 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dggqsnr6ns86y" path="res://Track Image.jpg" id="2_0ld5s"]
 [ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car/Car.tscn" id="2_okhpi"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
+size = Vector2(15, 2047.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0do6f"]
+size = Vector2(2082, 20)
+
 [node name="Track" type="Node" unique_id=80507153]
 script = ExtResource("1_0ld5s")
 
@@ -13,18 +19,26 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_0ld5s")
 
 [node name="Car" parent="Background" unique_id=339257769 instance=ExtResource("2_okhpi")]
-position = Vector2(80.499985, 390.49997)
+position = Vector2(91.5, 390.5)
 rotation = -3.185226
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Track Collision" unique_id=1093201196]
-position = Vector2(-18, -24)
-polygon = PackedVector2Array(384, 1203, 423, 1142, 481, 1087, 540, 1031, 598, 946, 623, 836, 625, 721, 595, 641, 569, 544, 597, 459, 639, 427, 710, 409, 962, 414, 1137, 423, 1256, 389, 1351, 292, 1413, 271, 1479, 290, 1509, 358, 1475, 435, 1396, 558, 1396, 660, 1406, 733, 1454, 787, 1563, 867, 1635, 875, 1713, 912, 1740, 976, 1704, 1056, 1584, 1161, 1511, 1236, 1481, 1298, 1468, 1364, 1472, 1439, 1489, 1493, 1500, 1554, 1548, 1596, 1579, 1653, 1581, 1684, 1588, 1715, 1545, 1748, 1463, 1746, 1234, 1739, 1048, 1739, 921, 1736, 515, 1774, 476, 1714, 512, 1615, 521, 1506, 469, 1405, 429, 1386, 396, 1358, 375, 1272)
-one_way_collision = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Track Collision" unique_id=1042057657]
+position = Vector2(11, 1045.625)
+shape = SubResource("RectangleShape2D_0ld5s")
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Track Collision" unique_id=1396738275]
-polygon = PackedVector2Array(137, 1262, 166, 1169, 205, 1085, 329, 954, 406, 873, 411, 757, 353, 588, 329, 524, 342, 455, 366, 376, 409, 303, 492, 238, 589, 215, 1028, 227, 1139, 220, 1207, 178, 1249, 133, 1343, 88, 1450, 93, 1547, 121, 1615, 187, 1656, 271, 1654, 404, 1598, 526, 1550, 587, 1562, 631, 1588, 661, 1722, 704, 1821, 751, 1873, 827, 1911, 903, 1905, 993, 1878, 1066, 1700, 1255, 1675, 1291, 1656, 1340, 1656, 1410, 1671, 1454, 1731, 1501, 1787, 1563, 1811, 1699, 1770, 1782, 1734, 1833, 1650, 1880, 1467, 1900, 1373, 1891, 1150, 1883, 744, 1888, 614, 1915, 526, 1928, 436, 1919, 329, 1855, 276, 1773, 259, 1694, 301, 1591, 297, 1522, 218, 1445, 160, 1360, 138, 1282, -830, 1238, -743, 2749, 2493, 2702, 2350, -169, -1124, -312, -848, 1207)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Track Collision" unique_id=1209550307]
+position = Vector2(2076, 1045.625)
+shape = SubResource("RectangleShape2D_0ld5s")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Track Collision" unique_id=217267915]
+position = Vector2(1044, 10)
+shape = SubResource("RectangleShape2D_0do6f")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Track Collision" unique_id=507194561]
+position = Vector2(1044, 2082)
+shape = SubResource("RectangleShape2D_0do6f")
 
 [connection signal="area_entered" from="Track Collision" to="." method="_on_track_collision_area_entered"]
