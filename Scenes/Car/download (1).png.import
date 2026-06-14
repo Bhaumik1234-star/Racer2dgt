@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7gdcm16m5r8t"
-path="res://.godot/imported/Track practice.png-c6ea5ace9209504c7b61aadcb2797031.ctex"
+uid="uid://dfkpmh8g0ls51"
+path="res://.godot/imported/download (1).png-e2cfa4f34c1eb63de881263bf2492793.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Track practice.png"
-dest_files=["res://.godot/imported/Track practice.png-c6ea5ace9209504c7b61aadcb2797031.ctex"]
+source_file="res://Scenes/Car/download (1).png"
+dest_files=["res://.godot/imported/download (1).png-e2cfa4f34c1eb63de881263bf2492793.ctex"]
 
 [params]
 

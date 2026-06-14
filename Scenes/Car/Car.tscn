@@ -1,24 +1,26 @@
 [gd_scene format=3 uid="uid://dimnaw5e7thi6"]
 
 [ext_resource type="Script" uid="uid://bf5fqmavyhexl" path="res://Scenes/Car/Car.gd" id="1_6tdsx"]
-[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://download (1).png" id="1_fnsqd"]
+[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Scenes/Car/download (1).png" id="1_fnsqd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnsqd"]
-radius = 15.0
-height = 74.0
+radius = 11.315758
+height = 53.749847
 
 [node name="Car" type="Area2D" unique_id=339257769]
+position = Vector2(1.4210855e-14, 0)
 scale = Vector2(0.7069788, 0.7069788)
 collision_mask = 0
 script = ExtResource("1_6tdsx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1678045938]
+position = Vector2(-1.4144707, -9.536743e-07)
 rotation = 1.5707964
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.18705273, 0.18705273)
 texture = ExtResource("1_fnsqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=628098979]
-position = Vector2(0, -2)
+position = Vector2(-2.8289394, -1.4144696)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_fnsqd")
 

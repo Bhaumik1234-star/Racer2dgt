@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2D Top-down car racing game assessment"
-run/main_scene="res://Scenes/Track/Track.tscn"
+run/main_scene="uid://dimnaw5e7thi6"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
