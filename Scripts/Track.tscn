@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dggqsnr6ns86y" path="res://Scenes/Track/Track Image.jpg" id="2_voge2"]
 [ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car/Car.tscn" id="3_pgi43"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="4_qx6ib"]
+[ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="5_voge2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
 size = Vector2(15, 2047.25)
@@ -12,7 +13,7 @@ size = Vector2(15, 2047.25)
 size = Vector2(2082, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx6ib"]
-size = Vector2(15, 188)
+size = Vector2(25.5, 180.75)
 
 [node name="Track" type="Node" unique_id=80507153]
 script = ExtResource("1_jisw4")
@@ -25,12 +26,6 @@ texture = ExtResource("2_voge2")
 [node name="Car" parent="Background" unique_id=339257769 instance=ExtResource("3_pgi43")]
 position = Vector2(95, 390.5)
 rotation = -3.185226
-max_speed = null
-reverse_speed = null
-acceleration = null
-friction = null
-steer_strength = null
-min_steer_factor = null
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0
@@ -58,12 +53,25 @@ script = ExtResource("4_qx6ib")
 polygon = PackedVector2Array(407, 1326, 384, 1280, 380, 1230, 383, 1200, 423, 1136, 455, 1098, 494, 1058, 540, 1012, 580, 946, 609, 881, 625, 806, 621, 743, 617, 698, 598, 655, 593, 623, 588, 594, 571, 539, 585, 490, 593, 463, 615, 439, 641, 422, 676, 410, 722, 407, 804, 407, 867, 410, 1074, 416, 1119, 415, 1162, 414, 1213, 397, 1262, 369, 1286, 346, 1312, 321, 1335, 288, 1349, 278, 1374, 273, 1393, 269, 1433, 285, 1462, 319, 1462, 367, 1443, 405, 1423, 437, 1403, 465, 1388, 489, 1375, 509, 1363, 530, 1352, 571, 1349, 604, 1353, 640, 1358, 667, 1370, 714, 1384, 734, 1395, 748, 1407, 762, 1424, 780, 1441, 798, 1465, 811, 1483, 820, 1513, 834, 1575, 851, 1674, 878, 1716, 957, 1686, 1015, 1652, 1051, 1549, 1131, 1494, 1188, 1457, 1242, 1443, 1286, 1440, 1318, 1435, 1356, 1444, 1415, 1453, 1473, 1477, 1527, 1504, 1572, 1543, 1616, 1551, 1676, 1518, 1709, 1370, 1701, 1129, 1702, 723, 1702, 572, 1731, 518, 1731, 485, 1707, 474, 1671, 500, 1598, 500, 1485, 475, 1428)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Off Track" unique_id=1599883507]
-polygon = PackedVector2Array(162, 1305, 169, 1163, 245, 1049, 386, 901, 417, 804, 338, 538, 338, 487, 349, 428, 365, 379, 400, 331, 433, 280, 506, 236, 573, 214, 663, 212, 1008, 218, 1119, 218, 1157, 201, 1213, 160, 1270, 118, 1322, 96, 1364, 91, 1424, 82, 1502, 105, 1608, 179, 1652, 278, 1657, 358, 1642, 424, 1626, 468, 1604, 510, 1584, 536, 1558, 589, 1558, 613, 1570, 646, 1610, 668, 1644, 673, 1757, 705, 1845, 771, 1892, 851, 1910, 913, 1911, 959, 1906, 1009, 1896, 1041, 1882, 1074, 1871, 1094, 1812, 1170, 1772, 1202, 1743, 1222, 1679, 1294, 1666, 1335, 1662, 1369, 1664, 1401, 1674, 1431, 1709, 1478, 1749, 1514, 1764, 1533, 1781, 1559, 1802, 1596, 1812, 1629, 1810, 1650, 1814, 1688, 1809, 1714, 1801, 1734, 1791, 1764, 1776, 1794, 1757, 1816, 1689, 1867, 1654, 1883, 1609, 1900, 1526, 1902, 1220, 1899, 735, 1898, 670, 1908, 628, 1921, 589, 1924, 541, 1931, 465, 1923, 432, 1917, 395, 1908, 367, 1897, 306, 1850, 286, 1825, 271, 1800, 258, 1770, 254, 1733, 252, 1700, 255, 1675, 260, 1642, 270, 1611, 282, 1593, 287, 1558, 284, 1525, 265, 1499, 220, 1449, 190, 1407, 173, 1376, 163, 1344, -45, 1357, -76, 2261, 2219, 2278, 2154, -52, -163, -28, -83, 1367)
+polygon = PackedVector2Array(162, 1305, 169, 1163, 245, 1049, 386, 901, 417, 804, 338, 538, 338, 487, 349, 428, 365, 379, 400, 331, 433, 280, 506, 236, 573, 214, 663, 212, 1008, 218, 1119, 218, 1157, 201, 1213, 160, 1270, 118, 1322, 96, 1364, 91, 1424, 82, 1502, 105, 1608, 179, 1652, 278, 1657, 358, 1642, 424, 1626, 468, 1604, 510, 1584, 536, 1558, 589, 1558, 613, 1570, 646, 1610, 668, 1644, 673, 1757, 705, 1845, 771, 1892, 851, 1910, 913, 1911, 959, 1906, 1009, 1896, 1041, 1882, 1074, 1871, 1094, 1812, 1170, 1772, 1202, 1743, 1222, 1679, 1294, 1666, 1335, 1662, 1369, 1664, 1401, 1674, 1431, 1709, 1478, 1749, 1514, 1764, 1533, 1781, 1559, 1802, 1596, 1812, 1629, 1810, 1650, 1814, 1688, 1809, 1714, 1801, 1734, 1791, 1764, 1776, 1794, 1757, 1816, 1689, 1867, 1654, 1883, 1609, 1900, 1526, 1902, 1220, 1899, 735, 1898, 670, 1908, 628, 1921, 589, 1924, 541, 1931, 465, 1923, 432, 1917, 395, 1908, 367, 1897, 306, 1850, 286, 1825, 271, 1800, 258, 1770, 254, 1733, 252, 1700, 255, 1675, 260, 1642, 270, 1611, 282, 1593, 287, 1558, 284, 1525, 265, 1499, 220, 1449, 190, 1407, 173, 1376, 163, 1344, -45, 1357, -76, 2261, 2219, 2278, 2154, -52, 282.98804, -32.619507, -163, -28, -83, 1367)
 
-[node name="Finish Line" type="Area2D" parent="." unique_id=219055197]
+[node name="FinishLine" type="Area2D" parent="." unique_id=601186285]
+position = Vector2(9, -9)
+script = ExtResource("5_voge2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Finish Line" unique_id=161620798]
-position = Vector2(1069.5, 1801)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=511749744]
+position = Vector2(1091.75, 1800.625)
 shape = SubResource("RectangleShape2D_qx6ib")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="FinishLine" unique_id=1774644323]
+
+[node name="Label" type="Label" parent="FinishLine/CanvasLayer" unique_id=1001396853]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(1.3993727, 1.3993727)
+text = "Lap: 1 / 3"
+
 [connection signal="area_entered" from="Track Collision" to="." method="_on_track_collision_area_entered"]
+[connection signal="area_entered" from="FinishLine" to="." method="_on_finish_line_area_entered"]
+[connection signal="area_entered" from="FinishLine" to="FinishLine" method="_on_area_entered"]
+[connection signal="child_entered_tree" from="FinishLine/CanvasLayer/Label" to="." method="_on_label_child_entered_tree"]

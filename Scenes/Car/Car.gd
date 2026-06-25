@@ -5,8 +5,8 @@ class_name Car
 @export var reverse_speed: float = 180.0
 @export var acceleration: float = 300.0
 @export var friction: float = 300.0
-@export var steer_strength: float = 5.0
-@export var min_steer_factor: float = 0.7
+@export var steer_strength: float = 4.0
+@export var min_steer_factor: float = 0.5
 
 var _throttle: float = 0.0
 var _steer: float = 0.0
@@ -114,3 +114,9 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("grass"):
 		speed_multiplier = 1.0
+		
+		
+		
+func lap_completed() -> void:
+	print("lap_completedd")
+		
