@@ -5,7 +5,7 @@ class_name Car
 @export var reverse_speed: float = 180.0
 @export var acceleration: float = 300.0
 @export var friction: float = 300.0
-@export var steer_strength: float = 4.0
+@export var steer_strength: float = 3.0
 @export var min_steer_factor: float = 0.5
 
 var _throttle: float = 0.0
@@ -118,5 +118,5 @@ func _on_area_exited(area: Area2D) -> void:
 		
 		
 func lap_completed() -> void:
-	print("lap_completedd")
+	print("lap_completed")
 		
