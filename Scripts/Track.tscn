@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car/Car.tscn" id="3_pgi43"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="4_qx6ib"]
 [ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="5_voge2"]
+[ext_resource type="AudioStream" uid="uid://84exuhhqchtd" path="res://Music/Kanye West - Flashing Lights ft. Dwele 4.mp3" id="6_pgi43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
 size = Vector2(15, 2047.25)
@@ -103,6 +104,29 @@ position = Vector2(1773, 853)
 position = Vector2(-210, 565.625)
 shape = SubResource("RectangleShape2D_vlbpn")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=21810755]
+
+[node name="MusicButton" type="Button" parent="CanvasLayer" unique_id=360271795]
+offset_left = 21.0
+offset_top = 101.0
+offset_right = 130.0
+offset_bottom = 134.0
+scale = Vector2(0.86065745, 0.86065745)
+text = "Play Music"
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer" unique_id=2129436905]
+offset_left = 20.0
+offset_top = 129.0
+offset_right = 150.70541
+offset_bottom = 145.0
+scale = Vector2(1.5072062, 1.5072062)
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1241998206]
+stream = ExtResource("6_pgi43")
+
 [connection signal="area_entered" from="Track Collision" to="." method="_on_track_collision_area_entered"]
 [connection signal="area_entered" from="FinishLine" to="." method="_on_finish_line_area_entered"]
 [connection signal="area_entered" from="FinishLine" to="FinishLine" method="_on_area_entered"]
@@ -110,3 +134,5 @@ shape = SubResource("RectangleShape2D_vlbpn")
 [connection signal="area_entered" from="Checkpoint1" to="." method="_on_checkpoint_1_area_entered"]
 [connection signal="area_entered" from="Checkpoint2" to="." method="_on_checkpoint_2_area_entered"]
 [connection signal="area_entered" from="Checkpoint3" to="." method="_on_checkpoint_3_area_entered"]
+[connection signal="pressed" from="CanvasLayer/MusicButton" to="." method="_on_music_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
