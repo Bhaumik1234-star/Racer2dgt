@@ -57,3 +57,4 @@ func _on_checkpoint_3_area_entered(area: Area2D) -> void:
 			current_progress = 3
 			print("Hit Checkpoint 3")
 			
+			
