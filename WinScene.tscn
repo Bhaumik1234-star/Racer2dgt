@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dhv2lnyubyrop"]
+
+[ext_resource type="Texture2D" uid="uid://bqyn1rxhrveux" path="res://Gemini_Generated_Image_89qav089qav089qa.png" id="1_t3pix"]
+[ext_resource type="Script" uid="uid://ci7w1k8k3kv6e" path="res://WinScene.gd" id="1_uuemd"]
+
+[node name="WinScene" type="Control" unique_id=980116809]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uuemd")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=605451597]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.83311176, 0.83311176)
+texture = ExtResource("1_t3pix")
+
+[node name="RestartButton" type="Button" parent="." unique_id=833116104]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 480.0
+offset_right = 563.0
+offset_bottom = 511.0
+scale = Vector2(2.6848977, 2.7153742)
+text = "Restart
+"
