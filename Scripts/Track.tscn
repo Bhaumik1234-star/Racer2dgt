@@ -20,7 +20,7 @@ size = Vector2(25.5, 180.75)
 size = Vector2(246, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgi43"]
-size = Vector2(24, 184)
+size = Vector2(21, 206)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vlbpn"]
 size = Vector2(213, 15.25)
@@ -73,7 +73,7 @@ position = Vector2(9, -9)
 script = ExtResource("5_voge2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=511749744]
-position = Vector2(1091.75, 1800.625)
+position = Vector2(1102, 1817)
 shape = SubResource("RectangleShape2D_qx6ib")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="FinishLine" unique_id=1774644323]
@@ -94,7 +94,7 @@ shape = SubResource("RectangleShape2D_voge2")
 [node name="Checkpoint2" type="Area2D" parent="." unique_id=2107430332]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2" unique_id=953829939]
-position = Vector2(1109, 327)
+position = Vector2(1110.5, 316)
 shape = SubResource("RectangleShape2D_pgi43")
 
 [node name="Checkpoint3" type="Area2D" parent="." unique_id=1571382896]

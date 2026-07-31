@@ -8,8 +8,8 @@ radius = 11.315758
 height = 53.749847
 
 [node name="Car" type="Area2D" unique_id=339257769]
-position = Vector2(1.4210855e-14, 0)
-scale = Vector2(0.7069788, 0.7069788)
+position = Vector2(2.0000002, 1.0000001)
+scale = Vector2(0.30697894, 0.30697894)
 collision_mask = 0
 script = ExtResource("1_4serm")
 

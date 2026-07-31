@@ -89,27 +89,18 @@ func finish_game() -> void:
 	get_tree().call_deferred("change_scene_to_file", "res://WinScene.tscn")
 
 func _on_checkpoint_1_area_entered(area: Area2D) -> void:
-	if is_game_over:
-		return
-
 	var car = _get_car(area)
 	if car and current_progress == 0:
 		current_progress = 1
 		print("Checkpoint 1 reached.")
 
 func _on_checkpoint_2_area_entered(area: Area2D) -> void:
-	if is_game_over:
-		return
-
 	var car = _get_car(area)
 	if car and current_progress == 1:
 		current_progress = 2
 		print("Checkpoint 2 reached.")
 
 func _on_checkpoint_3_area_entered(area: Area2D) -> void:
-	if is_game_over:
-		return
-
 	var car = _get_car(area)
 	if car and current_progress == 2:
 		current_progress = 3
