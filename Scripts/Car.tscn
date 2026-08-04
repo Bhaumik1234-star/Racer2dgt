@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Scenes/Car/download (1).png" id="2_b0cx4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnsqd"]
-radius = 11.315758
+radius = 11.187128
 height = 53.749847
 
 [node name="Car" type="Area2D" unique_id=339257769]

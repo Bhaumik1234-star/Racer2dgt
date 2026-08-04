@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var slowdown := 0.4
+@export var slowdown := 0.1
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)

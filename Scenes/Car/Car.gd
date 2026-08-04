@@ -1,11 +1,11 @@
 extends Area2D
 class_name Car
 
-@export var max_speed: float = 380.0
+@export var max_speed: float = 480.0
 @export var reverse_speed: float = 180.0
-@export var acceleration: float = 300.0
+@export var acceleration: float = 400.0
 @export var friction: float = 300.0
-@export var steer_strength: float = 3.7
+@export var steer_strength: float = 3.0
 @export var min_steer_factor: float = 0.4
 
 var _throttle: float = 0.0
@@ -119,3 +119,10 @@ func _on_area_exited(area: Area2D) -> void:
 func lap_completed() -> void:
 	print("lap_completed")
 		
+# Variable to track halfway completion
+var passed_halfway: bool = false
+
+# Called when the car touches the HALFWAY line
+func on_hit_halfway() -> void:
+	passed_halfway = true
+	print("Halfway point passed! Finish line is now valid.")

@@ -1,71 +1,69 @@
 [gd_scene format=3 uid="uid://dnqsauajd8425"]
 
 [ext_resource type="Script" uid="uid://6f7fs8tybc5w" path="res://Scripts/Track.gd" id="1_jisw4"]
-[ext_resource type="Texture2D" uid="uid://dggqsnr6ns86y" path="res://Scenes/Track/Track Image.jpg" id="2_voge2"]
+[ext_resource type="Texture2D" uid="uid://c1hgo7r6j4so8" path="res://Track.png" id="2_pgi43"]
 [ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car/Car.tscn" id="3_pgi43"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="4_qx6ib"]
 [ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="5_voge2"]
 [ext_resource type="AudioStream" uid="uid://84exuhhqchtd" path="res://Music/Kanye West - Flashing Lights ft. Dwele 4.mp3" id="6_pgi43"]
+[ext_resource type="Script" uid="uid://cjg0ybt2oqrit" path="res://Scripts/HalfwayLine.gd" id="7_vlbpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
-size = Vector2(15, 2047.25)
+size = Vector2(29.5, 2536)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0do6f"]
-size = Vector2(2082, 20)
+size = Vector2(2564, 28.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx6ib"]
-size = Vector2(25.5, 180.75)
+size = Vector2(19.75, 58)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_voge2"]
-size = Vector2(246, 11)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgi43"]
-size = Vector2(21, 206)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlbpn"]
-size = Vector2(213, 15.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i74gr"]
+size = Vector2(139, 42)
 
 [node name="Track" type="Node" unique_id=80507153]
 script = ExtResource("1_jisw4")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1368211737]
-position = Vector2(1056.0001, 1056.9999)
+position = Vector2(1282, 1283)
 scale = Vector2(2, 2)
-texture = ExtResource("2_voge2")
+texture = ExtResource("2_pgi43")
 metadata/_edit_lock_ = true
 
 [node name="Car" parent="Background" unique_id=339257769 instance=ExtResource("3_pgi43")]
-position = Vector2(95, 390.5)
-rotation = -3.185226
+position = Vector2(5.9999847, -448.5)
+rotation = -6.312971
+scale = Vector2(0.31225705, 0.31225705)
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0
 
 [node name="Track Edge1" type="CollisionShape2D" parent="Track Collision" unique_id=1042057657]
-position = Vector2(11, 1045.625)
+position = Vector2(18.25, 1280)
 shape = SubResource("RectangleShape2D_0ld5s")
 
 [node name="Track Edge2" type="CollisionShape2D" parent="Track Collision" unique_id=1209550307]
-position = Vector2(2076, 1045.625)
+position = Vector2(2552, 1293)
 shape = SubResource("RectangleShape2D_0ld5s")
 
 [node name="Track Edge3" type="CollisionShape2D" parent="Track Collision" unique_id=217267915]
-position = Vector2(1044, 10)
+position = Vector2(1286, 15)
 shape = SubResource("RectangleShape2D_0do6f")
 
 [node name="Track Edge4" type="CollisionShape2D" parent="Track Collision" unique_id=507194561]
-position = Vector2(1044, 2082)
+position = Vector2(1274.5, 2551.75)
 shape = SubResource("RectangleShape2D_0do6f")
 
 [node name="Off Track" type="Area2D" parent="." unique_id=1559694645]
 script = ExtResource("4_qx6ib")
 
 [node name="Off Track" type="CollisionPolygon2D" parent="Off Track" unique_id=57979163]
-position = Vector2(12, 4)
-polygon = PackedVector2Array(407, 1326, 384, 1280, 380, 1230, 383, 1200, 423, 1136, 455, 1098, 494, 1058, 540, 1012, 580, 946, 609, 881, 625, 806, 621, 743, 617, 698, 598, 655, 593, 623, 588, 594, 571, 539, 585, 490, 593, 463, 615, 439, 641, 422, 676, 410, 722, 407, 804, 407, 867, 410, 1074, 416, 1119, 415, 1162, 414, 1213, 397, 1262, 369, 1286, 346, 1312, 321, 1335, 288, 1349, 278, 1374, 273, 1393, 269, 1433, 285, 1462, 319, 1462, 367, 1443, 405, 1423, 437, 1403, 465, 1388, 489, 1375, 509, 1363, 530, 1352, 571, 1349, 604, 1353, 640, 1358, 667, 1370, 714, 1384, 734, 1395, 748, 1407, 762, 1424, 780, 1441, 798, 1465, 811, 1483, 820, 1513, 834, 1575, 851, 1674, 878, 1716, 957, 1686, 1015, 1652, 1051, 1549, 1131, 1494, 1188, 1457, 1242, 1443, 1286, 1440, 1318, 1435, 1356, 1444, 1415, 1453, 1473, 1477, 1527, 1504, 1572, 1543, 1616, 1551, 1676, 1518, 1709, 1370, 1701, 1129, 1702, 723, 1702, 572, 1731, 518, 1731, 485, 1707, 474, 1671, 500, 1598, 500, 1485, 475, 1428)
+position = Vector2(148, 83)
+polygon = PackedVector2Array(118, 400, 99, 344, 108, 299, 149, 262, 216, 260, 249, 274, 252, 309, 247, 381, 270, 447, 342, 492, 413, 506, 483, 482, 523, 430, 538, 378, 549, 351, 573, 331, 604, 326, 710, 328, 805, 329, 892, 331, 1001, 333, 1104, 333, 1228, 333, 1284, 332, 1399, 334, 1626, 333, 1742, 301, 1802, 232, 1843, 185, 1901, 166, 1975, 175, 2090, 210, 2166, 260, 2225, 345, 2237, 383, 2234, 392, 2207, 393, 2140, 332, 2025, 280, 1929, 284, 1883, 323, 1865, 350, 1854, 404, 1886, 490, 1906, 567, 1903, 648, 1854, 718, 1803, 744, 1730, 752, 1683, 736, 1619, 698, 1579, 674, 1524, 655, 1399, 664, 1321, 739, 1298, 789, 1289, 839, 1288, 868, 1311, 918, 1349, 964, 1400, 998, 1434, 1027, 1410, 1136, 1376, 1227, 1378, 1270, 1380, 1311, 1408, 1352, 1456, 1387, 1546, 1415, 1611, 1412, 1691, 1371, 1767, 1314, 1841, 1270, 1901, 1260, 1940, 1303, 1985, 1420, 2067, 1435, 2143, 1416, 2196, 1338, 2239, 1334, 2233, 1466, 2225, 1576, 2211, 1710, 2186, 1722, 2123, 1744, 2076, 1803, 2087, 1965, 2103, 2117, 2104, 2176, 2057, 2197, 1626.6572, 2193.8618, 1549, 2193, 1492, 2181, 1438, 2157, 1384, 2132, 1287, 2081, 1233, 2037, 1213, 1989, 1215, 1947, 1235, 1913, 1277, 1876, 1326, 1856, 1418, 1856, 1524, 1855, 1591, 1823, 1615, 1757, 1600, 1697, 1559, 1637, 1477, 1617, 1362, 1602, 1139, 1574, 1059, 1517, 1051, 1390, 1042, 1289, 1006, 1234, 920, 1189, 832, 1195, 740, 1236, 601, 1302, 382, 1409, 294, 1448, 226, 1448, 174, 1429, 127, 1369, 136, 1289, 172, 1174, 170, 1099, 131, 1011, 82, 938, 54, 874, 61, 824, 114, 794, 211, 798, 320, 796, 384, 749, 406, 653, 391, 584, 341, 526, 189, 513, 144, 460)
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Off Track" unique_id=1599883507]
-polygon = PackedVector2Array(162, 1305, 169, 1163, 245, 1049, 386, 901, 417, 804, 338, 538, 338, 487, 349, 428, 365, 379, 400, 331, 433, 280, 506, 236, 573, 214, 663, 212, 1008, 218, 1119, 218, 1157, 201, 1213, 160, 1270, 118, 1322, 96, 1364, 91, 1424, 82, 1502, 105, 1608, 179, 1652, 278, 1657, 358, 1642, 424, 1626, 468, 1604, 510, 1584, 536, 1558, 589, 1558, 613, 1570, 646, 1610, 668, 1644, 673, 1757, 705, 1845, 771, 1892, 851, 1910, 913, 1911, 959, 1906, 1009, 1896, 1041, 1882, 1074, 1871, 1094, 1812, 1170, 1772, 1202, 1743, 1222, 1679, 1294, 1666, 1335, 1662, 1369, 1664, 1401, 1674, 1431, 1709, 1478, 1749, 1514, 1764, 1533, 1781, 1559, 1802, 1596, 1812, 1629, 1810, 1650, 1814, 1688, 1809, 1714, 1801, 1734, 1791, 1764, 1776, 1794, 1757, 1816, 1689, 1867, 1654, 1883, 1609, 1900, 1526, 1902, 1220, 1899, 735, 1898, 670, 1908, 628, 1921, 589, 1924, 541, 1931, 465, 1923, 432, 1917, 395, 1908, 367, 1897, 306, 1850, 286, 1825, 271, 1800, 258, 1770, 254, 1733, 252, 1700, 255, 1675, 260, 1642, 270, 1611, 282, 1593, 287, 1558, 284, 1525, 265, 1499, 220, 1449, 190, 1407, 173, 1376, 163, 1344, -45, 1357, -76, 2261, 2219, 2278, 2154, -52, 282.98804, -32.619507, -163, -28, -83, 1367)
+position = Vector2(-241, -29)
+polygon = PackedVector2Array(154, 1318, 428, 1427, 480, 1273, 443, 1161, 368, 1047, 346, 973, 368, 905, 413, 844, 504, 828, 603, 825, 690, 810, 701, 768, 700, 743, 670, 728, 558, 723, 473, 646, 410, 483, 410, 383, 464, 332, 509, 303, 556, 289, 604, 291, 656, 311, 700, 363, 713, 430, 714, 486, 745, 521, 786, 538, 834, 521, 847, 497, 874, 424, 916, 389, 965, 368, 1023, 365, 1098, 363, 1173, 367, 1252, 360, 1331, 361, 1442, 358, 1493, 360, 1592, 361, 1685, 365, 1798, 365, 1966, 358, 2073, 340, 2135, 284, 2192, 229, 2272, 208, 2357, 215, 2463, 241, 2544, 276, 2648, 354, 2697, 465, 2699, 543, 2676, 571, 2630, 587, 2577, 571, 2519, 532, 2434, 474, 2356, 458, 2327, 508, 2348, 564, 2373, 651, 2368, 770, 2317, 874, 2246, 924, 2102, 942, 2052, 930, 1999, 904, 1948, 870, 1901, 845, 1847, 845, 1806, 858, 1769, 910, 1753, 941, 1765, 978, 1777, 1011, 1799, 1031, 1818, 1043, 1847, 1050, 1882, 1076, 1925, 1160, 1901, 1249, 1862, 1339, 1847, 1428, 1895, 1438, 1987, 1442, 2153, 1333, 2248, 1294, 2292, 1294, 2336, 1300, 2378, 1338, 2404, 1373, 2418, 1406, 2429, 1455, 2452, 1469, 2479, 1465, 2525, 1395, 2562, 1372, 2606, 1365, 2646, 1359, 2717, 1455, 2712, 1713, 2660, 1885, 2595, 1915, 2561, 1929, 2559, 1961, 2597, 2189, 2597, 2348, 2439, 2393, 2256, 2386, 2071, 2388, 1917, 2382, 1748, 2318, 1611, 2246, 1533, 2157, 1524, 2060, 1558, 1983, 1610, 1931, 1720, 1897, 1893, 1894, 1922, 1857, 1902, 1822, 1876, 1819, 1784, 1798, 1567, 1781, 1429, 1723, 1367, 1656, 1354, 1577, 1350, 1460, 1296, 1385, 1183, 1431, 995, 1527, 786, 1644, 605, 1652, 500, 1584, 437, 1507, 428, 1435, 149, 1330, -91, 2609, 2899, 2620, 2823, 30, 282.98804, -32.619507, -163, -28, -83, 1367)
 metadata/_edit_lock_ = true
 
 [node name="FinishLine" type="Area2D" parent="." unique_id=601186285]
@@ -73,7 +71,7 @@ position = Vector2(9, -9)
 script = ExtResource("5_voge2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=511749744]
-position = Vector2(1102, 1817)
+position = Vector2(1233.875, 382)
 shape = SubResource("RectangleShape2D_qx6ib")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="FinishLine" unique_id=1774644323]
@@ -84,25 +82,6 @@ offset_bottom = 23.0
 scale = Vector2(1.3993727, 1.3993727)
 text = "Lap: 1 / 3"
 metadata/_edit_use_anchors_ = true
-
-[node name="Checkpoint1" type="Area2D" parent="." unique_id=1480941635]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint1" unique_id=1585306059]
-position = Vector2(434, 979)
-shape = SubResource("RectangleShape2D_voge2")
-
-[node name="Checkpoint2" type="Area2D" parent="." unique_id=2107430332]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2" unique_id=953829939]
-position = Vector2(1110.5, 316)
-shape = SubResource("RectangleShape2D_pgi43")
-
-[node name="Checkpoint3" type="Area2D" parent="." unique_id=1571382896]
-position = Vector2(1773, 853)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint3" unique_id=221560046]
-position = Vector2(-210, 565.625)
-shape = SubResource("RectangleShape2D_vlbpn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=21810755]
 
@@ -127,12 +106,16 @@ value = 0.5
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1241998206]
 stream = ExtResource("6_pgi43")
 
+[node name="HalfwayLine" type="Area2D" parent="." unique_id=987983594]
+script = ExtResource("7_vlbpn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HalfwayLine" unique_id=1852724192]
+position = Vector2(1376.5, 2159)
+shape = SubResource("RectangleShape2D_i74gr")
+
 [connection signal="area_entered" from="Track Collision" to="." method="_on_track_collision_area_entered"]
 [connection signal="area_entered" from="FinishLine" to="." method="_on_finish_line_area_entered"]
 [connection signal="area_entered" from="FinishLine" to="FinishLine" method="_on_area_entered"]
 [connection signal="child_entered_tree" from="FinishLine/CanvasLayer/Label" to="." method="_on_label_child_entered_tree"]
-[connection signal="area_entered" from="Checkpoint1" to="." method="_on_checkpoint_1_area_entered"]
-[connection signal="area_entered" from="Checkpoint2" to="." method="_on_checkpoint_2_area_entered"]
-[connection signal="area_entered" from="Checkpoint3" to="." method="_on_checkpoint_3_area_entered"]
 [connection signal="pressed" from="CanvasLayer/MusicButton" to="." method="_on_music_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
