@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dimnaw5e7thi6"]
+
+[ext_resource type="Script" uid="uid://bf5fqmavyhexl" path="res://Scenes/Car 1/Car.gd" id="1_6tdsx"]
+[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Player 1 car.png" id="2_6tdsx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnsqd"]
+radius = 11.315758
+height = 53.749847
+
+[node name="Car" type="Area2D" unique_id=339257769]
+scale = Vector2(0.7069788, 0.7069788)
+collision_mask = 0
+script = ExtResource("1_6tdsx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1678045938]
+position = Vector2(-7.072348, -1.4144697)
+rotation = 1.5707964
+scale = Vector2(0.036528144, 0.036528148)
+texture = ExtResource("2_6tdsx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=628098979]
+position = Vector2(-7.0723486, -1.4144696)
+rotation = 1.5707964
+scale = Vector2(0.8594453, 0.749353)
+shape = SubResource("CapsuleShape2D_fnsqd")
+
+[node name="Cam_Default" type="Camera2D" parent="." unique_id=1477794479]
+zoom = Vector2(0.8, 0.8)
+position_smoothing_enabled = true
+
+[node name="Cam_Chase" type="Camera2D" parent="." unique_id=1195013896]
+offset = Vector2(0, 40)
+
+[node name="Cam_Close" type="Camera2D" parent="." unique_id=1184246279]
+offset = Vector2(0, 15)
+zoom = Vector2(1.4, 1.4)
+
+[node name="Cam_Tactical" type="Camera2D" parent="." unique_id=478122297]
+zoom = Vector2(0.6, 0.6)

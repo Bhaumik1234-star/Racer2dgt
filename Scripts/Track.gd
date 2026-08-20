@@ -9,7 +9,7 @@ var max_laps: int = 3
 var current_lap: int = 1
 var is_game_over: bool = false
 
-# Cooldown to prevent double-triggering from multiple Area2Ds on the same car
+# Cooldown to prevent double-trwiggering from multiple Area2Ds on the same car
 var can_trigger_start: bool = true
 
 @onready var music_player = $CanvasLayer/MusicPlayer
@@ -56,3 +56,4 @@ func _on_track_collision_area_entered(area: Area2D) -> void:
 func _on_start_line_area_entered(area: Area2D) -> void:
 	if is_game_over or not can_trigger_start:
 		return
+		

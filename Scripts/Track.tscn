@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://6f7fs8tybc5w" path="res://Scripts/Track.gd" id="1_jisw4"]
 [ext_resource type="Texture2D" uid="uid://c1hgo7r6j4so8" path="res://Track.png" id="2_pgi43"]
-[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car/Car.tscn" id="3_pgi43"]
+[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car 1/Car.tscn" id="3_pgi43"]
+[ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car 2/Car2.tscn" id="4_i74gr"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="4_qx6ib"]
 [ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="5_voge2"]
 [ext_resource type="AudioStream" uid="uid://84exuhhqchtd" path="res://Music/Kanye West - Flashing Lights ft. Dwele 4.mp3" id="6_pgi43"]
@@ -29,10 +30,14 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_pgi43")
 metadata/_edit_lock_ = true
 
-[node name="Car" parent="Background" unique_id=339257769 instance=ExtResource("3_pgi43")]
-position = Vector2(5.9999847, -448.5)
+[node name="Player1" parent="Background" unique_id=339257769 instance=ExtResource("3_pgi43")]
+position = Vector2(-3.5000143, -447.5)
 rotation = -6.312971
-scale = Vector2(0.31225705, 0.31225705)
+scale = Vector2(0.28705922, 0.23715964)
+
+[node name="Player2" parent="Background" unique_id=680478528 instance=ExtResource("4_i74gr")]
+position = Vector2(-6, -462)
+scale = Vector2(0.20290363, 0.20290363)
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0
