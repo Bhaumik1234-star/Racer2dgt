@@ -19,13 +19,8 @@ var speed_multiplier: float = 1.0
 var spawn_position: Vector2
 var spawn_rotation: float
 
-# Cameras
-@onready var cam_default: Camera2D = $Cam_Default
-@onready var cam_chase: Camera2D = $Cam_Chase
-@onready var cam_close: Camera2D = $Cam_Close
-@onready var cam_tactical: Camera2D = $Cam_Tactical
-
-var camera_index: int = 0
+# Variable to track halfway completion
+var passed_halfway: bool = false
 
 
 func _ready() -> void:
@@ -35,25 +30,24 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 
-	update_camera()
+	# Disable local cameras if they exist under this node
+	if has_node("Cam_Default"): $Cam_Default.enabled = false
+	if has_node("Cam_Chase"): $Cam_Chase.enabled = false
+	if has_node("Cam_Close"): $Cam_Close.enabled = false
+	if has_node("Cam_Tactical"): $Cam_Tactical.enabled = false
 
 
 func _process(_delta: float) -> void:
-	# Now uses player_prefix dynamically instead of fixed ui_ controls
+	# Controls movement using player_prefix
 	_throttle = Input.get_axis(player_prefix + "_down", player_prefix + "_up")
 	_steer = Input.get_axis(player_prefix + "_left", player_prefix + "_right")
 
-	if Input.is_action_just_pressed("change_camera"):
-		camera_index += 1
-		if camera_index > 3:
-			camera_index = 0
-		update_camera()
 
-							 
 func _physics_process(delta: float) -> void:
 	apply_throttle(delta)
 	apply_rotation(delta)
 	position += transform.x * _velocity * delta
+
 
 # MOVEMENT
 func apply_throttle(delta: float) -> void:
@@ -82,24 +76,6 @@ func apply_rotation(delta: float) -> void:
 		)
 
 
-# CAMERA SWITCH
-func update_camera() -> void:
-	cam_default.enabled = false
-	cam_chase.enabled = false
-	cam_close.enabled = false
-	cam_tactical.enabled = false
-
-	match camera_index:
-		0:
-			cam_default.enabled = true
-		1:
-			cam_chase.enabled = true
-		2:
-			cam_close.enabled = true
-		3:
-			cam_tactical.enabled = true
-
-
 # RESET / AREAS
 func hit_boundary() -> void:
 	_velocity = 0.0
@@ -117,16 +93,13 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("grass"):
 		speed_multiplier = 1.0
-		
-		
+
+
 func lap_completed() -> void: 
 	print("lap_completed")
-		
-# Variable to track halfway completion
-var passed_halfway: bool = false
+
 
 # Called when the car touches the HALFWAY line
 func on_hit_halfway() -> void:
 	passed_halfway = true
 	print("Halfway point passed! Finish line is now valid.")
-	 

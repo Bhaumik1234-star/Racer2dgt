@@ -9,7 +9,11 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Car:
 		area.speed_multiplier = slowdown
+	if area is Car2:
+		area.speed_multiplier = slowdown
 
 func _on_area_exited(area: Area2D) -> void:
 	if area is Car:
+		area.speed_multiplier = 1.0
+	if area is Car2:
 		area.speed_multiplier = 1.0
