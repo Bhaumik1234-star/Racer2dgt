@@ -1,22 +1,36 @@
 extends Control
 
+@onready var options_panel: Panel = $OptionsPanel
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if options_panel:
+		options_panel.hide()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_start_pressed():
+func _on_start_pressed() -> void:
+	GameManager.selected_vehicle = "car"
 	get_tree().change_scene_to_file("res://Scripts/Track.tscn")
 
-func _on_settings_pressed():
-	print("settings pressed")
+func _on_settings_pressed() -> void:
+	if options_panel:
+		options_panel.show()
 
-
-func _on_exit_pressed():
+func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+# --- Options Menu Buttons ---
+
+func _on_options_button_pressed() -> void:
+	if options_panel:
+		options_panel.show()
+
+func _on_car_mode_button_pressed() -> void:
+	GameManager.selected_vehicle = "car"
+	get_tree().change_scene_to_file("res://Scripts/Track.tscn")
+
+func _on_bike_mode_button_pressed() -> void:
+	GameManager.selected_vehicle = "bike"
+	get_tree().change_scene_to_file("res://Scripts/Track.tscn")
+
+func _on_back_button_pressed() -> void:
+	if options_panel:
+		options_panel.hide()

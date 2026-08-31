@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2nm3aklgesqj"
+path="res://.godot/imported/lap_chime.wav-d83f76e3ed9206abf8a7beaf2abd5157.sample"
+
+[deps]
+
+source_file="res://Sound Effects/SFX/lap_chime.wav"
+dest_files=["res://.godot/imported/lap_chime.wav-d83f76e3ed9206abf8a7beaf2abd5157.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

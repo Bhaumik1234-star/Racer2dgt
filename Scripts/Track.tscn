@@ -6,9 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car 1/Car.tscn" id="3_pgi43"]
 [ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car 2/Car2.tscn" id="4_i74gr"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="4_qx6ib"]
+[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Player 1 car.png" id="5_tg46a"]
 [ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="5_voge2"]
-[ext_resource type="AudioStream" uid="uid://84exuhhqchtd" path="res://Music/Kanye West - Flashing Lights ft. Dwele 4.mp3" id="6_pgi43"]
+[ext_resource type="Texture2D" uid="uid://h8uf7577e6vf" path="res://Bike1 without a bg.png" id="6_tg46a"]
 [ext_resource type="Script" uid="uid://cjg0ybt2oqrit" path="res://Scripts/HalfwayLine.gd" id="7_vlbpn"]
+[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Scenes/Car 2/download (1).png" id="8_g071b"]
+[ext_resource type="Texture2D" uid="uid://uc62cs52ksbm" path="res://Bike 2 without a bg.png" id="9_pbbgl"]
+[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Music/Game Song.mp3" id="11_tg46a"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="12_pbbgl"]
+[ext_resource type="AudioStream" uid="uid://dcvuub7eug7yj" path="res://Sound Effects/SFX/beep_tick.wav" id="13_m1i7a"]
+[ext_resource type="AudioStream" uid="uid://budiyv3bc745o" path="res://Sound Effects/SFX/beep_go.wav" id="14_48pb1"]
+[ext_resource type="AudioStream" uid="uid://c2nm3aklgesqj" path="res://Sound Effects/SFX/lap_chime.wav" id="17_ymxt0"]
+[ext_resource type="AudioStream" uid="uid://61se0i18od57" path="res://Sound Effects/SFX/win_fanfare.wav" id="18_uj2yq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
 size = Vector2(29.5, 2536)
@@ -21,6 +30,18 @@ size = Vector2(139, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx6ib"]
 size = Vector2(19.75, 58)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1i7a"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.7490196, 0.2, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="Track" type="Node" unique_id=80507153]
 script = ExtResource("1_jisw4")
@@ -40,10 +61,17 @@ car2 = NodePath("../Player2")
 position = Vector2(-3.5, -447.5)
 rotation = -0.029785808
 scale = Vector2(0.2870592, 0.23715962)
+collision_mask = 1
+monitoring = false
+car_texture = ExtResource("5_tg46a")
+bike_texture = ExtResource("6_tg46a")
 
 [node name="Player2" parent="Background" unique_id=680478528 instance=ExtResource("4_i74gr")]
 position = Vector2(-5.999939, -462)
 scale = Vector2(0.20290364, 0.20290364)
+collision_mask = 1
+car_texture = ExtResource("8_g071b")
+bike_texture = ExtResource("9_pbbgl")
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0
@@ -98,7 +126,34 @@ step = 0.01
 value = 0.5
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1241998206]
-stream = ExtResource("6_pgi43")
+stream = ExtResource("11_tg46a")
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer" unique_id=770732498]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -105.5
+offset_right = 150.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_font_sizes/font_size = 130
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BeepTickSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=738692122]
+stream = ExtResource("13_m1i7a")
+
+[node name="BeepGoSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=97603380]
+stream = ExtResource("14_48pb1")
 
 [node name="HalfwayLine" type="Area2D" parent="." unique_id=987983594]
 script = ExtResource("7_vlbpn")
@@ -111,17 +166,41 @@ shape = SubResource("RectangleShape2D_i74gr")
 position = Vector2(9, -9)
 script = ExtResource("5_voge2")
 
+[node name="LapChimeSFX" type="AudioStreamPlayer" parent="FinishLine" unique_id=1601951501]
+stream = ExtResource("17_ymxt0")
+
+[node name="WinFanfareSFX" type="AudioStreamPlayer" parent="FinishLine" unique_id=1894808467]
+stream = ExtResource("18_uj2yq")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=511749744]
 position = Vector2(1233.875, 382)
 shape = SubResource("RectangleShape2D_qx6ib")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="FinishLine" unique_id=1774644323]
 
-[node name="Label" type="Label" parent="FinishLine/CanvasLayer" unique_id=1001396853]
-offset_right = 40.0
-offset_bottom = 23.0
-scale = Vector2(1.3993727, 1.3993727)
+[node name="Panel" type="Panel" parent="FinishLine/CanvasLayer" unique_id=340295388]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 14.0
+offset_right = 220.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m1i7a")
+
+[node name="Label" type="Label" parent="FinishLine/CanvasLayer/Panel" unique_id=1001396853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_font_sizes/font_size = 22
 text = "Lap: 1 / 3"
+horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="area_entered" from="Track Collision" to="." method="_on_track_collision_area_entered"]
@@ -129,4 +208,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="value_changed" from="CanvasLayer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="area_entered" from="FinishLine" to="." method="_on_finish_line_area_entered"]
 [connection signal="area_entered" from="FinishLine" to="FinishLine" method="_on_area_entered"]
-[connection signal="child_entered_tree" from="FinishLine/CanvasLayer/Label" to="." method="_on_label_child_entered_tree"]
+[connection signal="child_entered_tree" from="FinishLine/CanvasLayer/Panel/Label" to="." method="_on_label_child_entered_tree"]
