@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://MAP.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://mcmc51wh1som" path="res://MainMenu.gd" id="1_fu7sn"]
 [ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="2_7vrkn"]
+[ext_resource type="AudioStream" uid="uid://cdfwl23d8mp2m" path="res://Sound Effects/SFX/ui_click.wav" id="2_jix8l"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 texture = ExtResource("1_06t4h")
@@ -40,13 +41,87 @@ shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glbon"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlkkf"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qe12f"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qtwp"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy7ct"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o4t1"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k4wn"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5v2v"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iotk1"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="MainMenu" type="Control" unique_id=1143634396]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fu7sn")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=2099088491]
+stream = ExtResource("2_jix8l")
 
 [node name="Panel" type="Panel" parent="." unique_id=63610781]
 layout_mode = 1
@@ -85,6 +160,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
 text = "Start game"
+
+[node name="HowToPlayButton" type="Button" parent="VBoxContainer" unique_id=1820222151]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "How to Play"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=38539258]
 layout_mode = 2
@@ -137,34 +226,147 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="OptionsPanel" type="Panel" parent="." unique_id=396969386]
-visible = false
 layout_mode = 0
-offset_left = 402.0
-offset_top = 281.0
-offset_right = 729.0
-offset_bottom = 497.0
+offset_left = 296.0
+offset_top = 64.0
+offset_right = 856.0
+offset_bottom = 584.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel" unique_id=203782693]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBox" type="VBoxContainer" parent="OptionsPanel" unique_id=203782693]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 19.5
+offset_right = -28.0
+offset_bottom = -19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
 
-[node name="CarModeButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=1938298591]
+[node name="Title" type="Label" parent="OptionsPanel/VBox" unique_id=1347347340]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_7vrkn")
+theme_override_font_sizes/font_size = 34
+text = "Options
+"
+horizontal_alignment = 1
+
+[node name="VehicleLabel" type="Label" parent="OptionsPanel/VBox" unique_id=2074623751]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8509804, 1)
+theme_override_font_sizes/font_size = 16
+text = "VEHICEL"
+
+[node name="VehicleRow" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=1886060489]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="CarModeButton" type="Button" parent="OptionsPanel/VBox/VehicleRow" unique_id=1938298591]
 layout_mode = 2
 text = "Play Car Mode"
 
-[node name="BikeModeButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=1208971922]
+[node name="BikeModeButton" type="Button" parent="OptionsPanel/VBox/VehicleRow" unique_id=1208971922]
 layout_mode = 2
 text = "Play Bike Mode"
 
-[node name="BackButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=1759635935]
+[node name="PlayersLabel" type="Label" parent="OptionsPanel/VBox" unique_id=596356960]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8509804, 1)
+theme_override_font_sizes/font_size = 16
+text = "PLAYERS"
+
+[node name="PlayersRow" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=936249456]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="OnePlayerButton" type="Button" parent="OptionsPanel/VBox/PlayersRow" unique_id=444873359]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
+text = "1 Player"
+
+[node name="TwoPlayerButton" type="Button" parent="OptionsPanel/VBox/PlayersRow" unique_id=700219661]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_nlkkf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qe12f")
+text = "2 Players
+"
+
+[node name="LapsLabel" type="Label" parent="OptionsPanel/VBox" unique_id=878965594]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8509804, 1)
+theme_override_font_sizes/font_size = 16
+text = "LAPS
+"
+
+[node name="LapRows" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=210085416]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Laps3Button" type="Button" parent="OptionsPanel/VBox/LapRows" unique_id=788741898]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_8qtwp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dy7ct")
+text = "3"
+
+[node name="Lap5Button" type="Button" parent="OptionsPanel/VBox/LapRows" unique_id=667600248]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_0o4t1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0k4wn")
+text = "5"
+
+[node name="Lap7Button" type="Button" parent="OptionsPanel/VBox/LapRows" unique_id=1923551363]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_j5v2v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iotk1")
+text = "7"
+
+[node name="VolumeLabel" type="Label" parent="OptionsPanel/VBox" unique_id=333635211]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8509804, 1)
+theme_override_font_sizes/font_size = 16
+text = "VOLUME"
+
+[node name="VolumeRow" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=900644627]
+layout_mode = 2
+
+[node name="VolumeSlider" type="HSlider" parent="OptionsPanel/VBox/VolumeRow" unique_id=1710963428]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="ButtonRow" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=1347686674]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="OptionsPanel/VBox/ButtonRow" unique_id=1759635935]
 layout_mode = 2
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="OptionsPanel/VBoxContainer/CarModeButton" to="." method="_on_car_mode_button_pressed"]
-[connection signal="pressed" from="OptionsPanel/VBoxContainer/BikeModeButton" to="." method="_on_bike_mode_button_pressed"]
-[connection signal="pressed" from="OptionsPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/VehicleRow/CarModeButton" to="." method="_on_car_mode_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/VehicleRow/BikeModeButton" to="." method="_on_bike_mode_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/ButtonRow/BackButton" to="." method="_on_back_button_pressed"]

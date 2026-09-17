@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bf5fqmavyhexl" path="res://Scenes/Car 1/Car.gd" id="1_6tdsx"]
 [ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Player 1 car.png" id="2_6tdsx"]
+[ext_resource type="AudioStream" uid="uid://1mmpgtx2ei2g" path="res://Sound Effects/SFX/freesound_community-rally-car-idle-loop-14-32339.mp3" id="3_6nqi3"]
+[ext_resource type="AudioStream" uid="uid://dq0f7lssalg6b" path="res://Sound Effects/SFX/drift.wav" id="4_80s7y"]
+[ext_resource type="AudioStream" uid="uid://dengxslel6tbo" path="res://Sound Effects/SFX/boost.wav" id="5_2jxh0"]
+[ext_resource type="AudioStream" uid="uid://tsmi56tp5761" path="res://Sound Effects/SFX/crash.wav" id="6_wklbc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnsqd"]
 radius = 11.315758
@@ -23,3 +27,22 @@ position = Vector2(-7.0723486, -1.4144696)
 rotation = 1.5707964
 scale = Vector2(0.8594453, 0.749353)
 shape = SubResource("CapsuleShape2D_fnsqd")
+
+[node name="EngineSFX" type="AudioStreamPlayer2D" parent="." unique_id=711347638]
+stream = ExtResource("3_6nqi3")
+volume_db = -6.0
+autoplay = true
+max_distance = 3000.0
+
+[node name="DriftSFX" type="AudioStreamPlayer2D" parent="." unique_id=908967287]
+stream = ExtResource("4_80s7y")
+volume_db = -2.0
+max_distance = 3000.0
+
+[node name="BoostSFX" type="AudioStreamPlayer2D" parent="." unique_id=281179335]
+stream = ExtResource("5_2jxh0")
+max_distance = 3000.0
+
+[node name="CrashSFX" type="AudioStreamPlayer2D" parent="." unique_id=16883203]
+stream = ExtResource("6_wklbc")
+max_distance = 3000.0
