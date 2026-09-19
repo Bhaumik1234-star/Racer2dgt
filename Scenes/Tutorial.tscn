@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://c8e81ibdusi8p"]
+
+[ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://MAP.png" id="1_7bloo"]
+[ext_resource type="Script" uid="uid://cbsi574k87pw8" path="res://Scripts/Tutorial.gd" id="1_rlm2d"]
+[ext_resource type="AudioStream" uid="uid://cdfwl23d8mp2m" path="res://Sound Effects/SFX/ui_click.wav" id="2_rlm2d"]
+[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Music/Game Song.mp3" id="3_3j26a"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="4_x7a1n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vv0ms"]
+texture = ExtResource("1_7bloo")
+modulate_color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Tutorial" type="Control" unique_id=1624769005]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rlm2d")
+
+[node name="Panel" type="Panel" parent="." unique_id=381061730]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vv0ms")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=1853321663]
+stream = ExtResource("2_rlm2d")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=783306999]
+stream = ExtResource("3_3j26a")
+volume_db = -4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=492170191]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 24.0
+offset_right = -60.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=794469665]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_x7a1n")
+theme_override_font_sizes/font_size = 44
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=894716030]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SectionList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1179616880]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer" unique_id=181383924]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=283196416]
+custom_minimum_size = Vector2(160, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Back"
+
+[node name="StarRaceButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=219648350]
+custom_minimum_size = Vector2(220, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Start Race!"
+
+[connection signal="pressed" from="VBoxContainer/ButtonRow/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonRow/StarRaceButton" to="." method="_on_star_race_button_pressed"]

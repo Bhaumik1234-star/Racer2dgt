@@ -41,6 +41,48 @@ shadow_offset = Vector2(0, 3.41)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w44g7"]
+bg_color = Color(0.078431375, 0.078431375, 0.10980392, 0.9411765)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.7490196, 0.2, 0.8509804)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm266"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8g3n"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u0te"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiatc"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
 bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
 corner_radius_top_left = 10
@@ -110,6 +152,34 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5qqf"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7bbuq"]
+bg_color = Color(0.21960784, 0.21960784, 0.25882354, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg3m2"]
+bg_color = Color(0.14901961, 0.7490196, 0.34901962, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojb7r"]
+bg_color = Color(0.14901961, 0.7490196, 0.34901962, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [node name="MainMenu" type="Control" unique_id=1143634396]
 layout_mode = 3
@@ -231,6 +301,7 @@ offset_left = 296.0
 offset_top = 64.0
 offset_right = 856.0
 offset_bottom = 584.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w44g7")
 
 [node name="VBox" type="VBoxContainer" parent="OptionsPanel" unique_id=203782693]
 layout_mode = 1
@@ -240,7 +311,7 @@ anchor_bottom = 1.0
 offset_left = 28.0
 offset_top = 19.5
 offset_right = -28.0
-offset_bottom = -19.5
+offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
@@ -257,19 +328,29 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8509804, 1)
 theme_override_font_sizes/font_size = 16
-text = "VEHICEL"
+text = "VEHICLE"
 
 [node name="VehicleRow" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=1886060489]
 layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="CarModeButton" type="Button" parent="OptionsPanel/VBox/VehicleRow" unique_id=1938298591]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-text = "Play Car Mode"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_cm266")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g8g3n")
+text = "Car"
 
 [node name="BikeModeButton" type="Button" parent="OptionsPanel/VBox/VehicleRow" unique_id=1208971922]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-text = "Play Bike Mode"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_8u0te")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oiatc")
+text = "Bike"
 
 [node name="PlayersLabel" type="Label" parent="OptionsPanel/VBox" unique_id=596356960]
 layout_mode = 2
@@ -357,16 +438,38 @@ value = 1.0
 
 [node name="ButtonRow" type="HBoxContainer" parent="OptionsPanel/VBox" unique_id=1347686674]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
 alignment = 1
 
 [node name="BackButton" type="Button" parent="OptionsPanel/VBox/ButtonRow" unique_id=1759635935]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_e5qqf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7bbuq")
 text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_pressed"]
+[node name="PlayButton" type="Button" parent="OptionsPanel/VBox/ButtonRow" unique_id=1305889029]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_mg3m2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ojb7r")
+text = "Play!"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="OptionsPanel/VBox/VehicleRow/CarModeButton" to="." method="_on_car_mode_button_pressed"]
 [connection signal="pressed" from="OptionsPanel/VBox/VehicleRow/BikeModeButton" to="." method="_on_bike_mode_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/PlayersRow/OnePlayerButton" to="." method="_on_one_player_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/PlayersRow/TwoPlayerButton" to="." method="_on_two_player_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/LapRows/Laps3Button" to="." method="_on_laps_3_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/LapRows/Lap5Button" to="." method="_on_lap_5_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/LapRows/Lap7Button" to="." method="_on_lap_7_button_pressed"]
+[connection signal="value_changed" from="OptionsPanel/VBox/VolumeRow/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="OptionsPanel/VBox/ButtonRow/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/VBox/ButtonRow/PlayButton" to="." method="_on_play_button_pressed"]

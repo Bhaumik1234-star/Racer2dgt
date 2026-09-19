@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b174lrbxfybjp"]
+
+[ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://MAP.png" id="1_fo23m"]
+[ext_resource type="AudioStream" uid="uid://cdfwl23d8mp2m" path="res://Sound Effects/SFX/ui_click.wav" id="2_1cx81"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="3_1cx81"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1qomi"]
+texture = ExtResource("1_fo23m")
+modulate_color = Color(0.4509804, 0.4509804, 0.4509804, 1)
+
+[node name="LevelSelect" type="Control" unique_id=942363223]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1220810879]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1qomi")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="." unique_id=134857035]
+stream = ExtResource("2_1cx81")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1897478133]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = -40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1351315803]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1cx81")
+theme_override_font_sizes/font_size = 44
+text = "Select Track"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=285917325]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer" unique_id=364109373]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 5
+
+[node name="LockedMsg" type="Label" parent="VBoxContainer" unique_id=1235393630]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "Beat the previous level first to unlock this track!"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=1896901386]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Back"
