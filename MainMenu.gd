@@ -14,14 +14,6 @@ extends Control
 @onready var volume_slider: HSlider = $OptionsPanel/VBox/VolumeRow/VolumeSlider if has_node("OptionsPanel/VBox/VolumeRow/VolumeSlider") else null
 
 
-func _ready() -> void:
-	if options_panel:
-		options_panel.hide()
-	if volume_slider:
-		volume_slider.value = GameManager.master_volume
-	_refresh_option_button()
-
-	
 func _click() -> void:
 	if click_sfx:
 		click_sfx.play()
@@ -125,5 +117,3 @@ func _on_back_button_pressed() -> void:
 	_click()
 	if options_panel:
 		options_panel.hide()
-	
-	

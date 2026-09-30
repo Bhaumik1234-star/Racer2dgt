@@ -25,6 +25,58 @@ size = Vector2(29.5, 2536)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0do6f"]
 size = Vector2(2564, 28.5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48pb1"]
+bg_color = Color(0.078431375, 0.050980393, 0.050980393, 0.72156864)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9490196, 0.2509804, 0.2509804, 0.8509804)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymxt0"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj2yq"]
+bg_color = Color(0.9490196, 0.2509804, 0.2509804, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip5vo"]
+bg_color = Color(0.050980393, 0.050980393, 0.078431375, 0.72156864)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3019608, 0.54901963, 0.9490196, 0.8509804)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6jkv"]
+bg_color = Color(1, 1, 1, 0.12156863)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaeo0"]
+bg_color = Color(0.3019608, 0.54901963, 0.9490196, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i74gr"]
 size = Vector2(139, 42)
 
@@ -154,6 +206,117 @@ stream = ExtResource("13_m1i7a")
 
 [node name="BeepGoSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=97603380]
 stream = ExtResource("14_48pb1")
+
+[node name="SpeedPanel1" type="Panel" parent="CanvasLayer" unique_id=2085856115]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -110.0
+offset_right = 214.0
+offset_bottom = -24.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_48pb1")
+
+[node name="P1Tag" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=384609726]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 90.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.9490196, 0.54901963, 0.54901963, 1)
+theme_override_font_sizes/font_size = 14
+text = "PLAYER 1"
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=261426810]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="UnitLabel" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=1200783219]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 44.0
+offset_right = 194.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "Km/H	"
+
+[node name="BarBG" type="Panel" parent="CanvasLayer/SpeedPanel1" unique_id=232832822]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 72.0
+offset_right = 178.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ymxt0")
+
+[node name="BarFill" type="Panel" parent="CanvasLayer/SpeedPanel1/BarBG" unique_id=1960634988]
+layout_mode = 0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uj2yq")
+
+[node name="SpeedPanel2" type="Panel" parent="CanvasLayer" unique_id=1971858236]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -214.0
+offset_top = -110.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ip5vo")
+
+[node name="P2Tag" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=1654477464]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 90.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.54901963, 0.7490196, 0.9490196, 1)
+theme_override_font_sizes/font_size = 14
+text = "PLAYER 2"
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=301415592]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="UnitLabel" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=90059324]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 44.0
+offset_right = 194.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "KM/H"
+
+[node name="BarBG" type="Panel" parent="CanvasLayer/SpeedPanel2" unique_id=1405924585]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 72.0
+offset_right = 178.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6jkv")
+
+[node name="BarFill" type="Panel" parent="CanvasLayer/SpeedPanel2/BarBG" unique_id=67559111]
+layout_mode = 0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oaeo0")
 
 [node name="HalfwayLine" type="Area2D" parent="." unique_id=987983594]
 script = ExtResource("7_vlbpn")

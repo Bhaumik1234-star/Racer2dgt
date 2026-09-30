@@ -14,7 +14,7 @@ const SECTIONS := [
 @onready var click_sfx: AudioStreamPlayer = $ClickSFX if has_node("ClickSFX") else null
 
 func _ready() -> void:
-	for sections in SECTIONS:
+	for section in SECTIONS:
 		list.add_child(_build_section(section))
 
 		

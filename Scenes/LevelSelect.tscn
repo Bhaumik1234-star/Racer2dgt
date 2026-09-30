@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b174lrbxfybjp"]
 
+[ext_resource type="Script" uid="uid://dy5adbuqkmt7q" path="res://Scenes/LevelSelect.gd" id="1_1qomi"]
 [ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://MAP.png" id="1_fo23m"]
 [ext_resource type="AudioStream" uid="uid://cdfwl23d8mp2m" path="res://Sound Effects/SFX/ui_click.wav" id="2_1cx81"]
 [ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="3_1cx81"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1qomi")
 
 [node name="Panel" type="Panel" parent="." unique_id=1220810879]
 layout_mode = 1
@@ -72,3 +74,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
