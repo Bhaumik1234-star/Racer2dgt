@@ -10,8 +10,7 @@ class_name Car
 @export var steer_strength: float = 3.4
 @export var min_steer_factor: float = 0.7
 
-## Grip: how quickly actual movement catches up to the direction the car is
-## facing. Lower values = more drift/slide, higher = more "on rails".
+## Grip: how quickly actual movement catches up to the direction the car is facing.
 @export var grip: float = 9.0
 ## Minimum time (seconds) holding a drift before releasing it gives a boost.
 @export var min_drift_time: float = 0.35
@@ -57,12 +56,6 @@ func _ready() -> void:
 		sprite.texture = bike_texture
 	elif car_texture:
 		sprite.texture = car_texture
-
-	if GameManager.has_method("get_preset_stats"):
-		var stats = GameManager.get_preset_stats()
-		max_speed *= stats.get("max_speed_mult", 1.0)
-		grip *= stats.get("grip_mult", 1.0)
-		acceleration *= stats.get("accel_mult", 1.0)
 
 	if "p1_color" in GameManager:
 		sprite.modulate = GameManager.p1_color
@@ -227,3 +220,9 @@ func lap_completed() -> void:
 func on_hit_halfway() -> void:
 	passed_halfway = true
 	print("P1 Halfway point passed!")
+
+
+# Scales top speed (480) to exactly 100 km/h
+func get_speed_kmh() -> int:
+	var total_speed: float = (move_velocity + (transform.x * boost_speed if boost_timer > 0.0 else Vector2.ZERO)).length()
+	return int(clamp((total_speed / max_speed) * 100.0, 0.0, 100.0))

@@ -1,5 +1,5 @@
 extends Node
-class_name Track1
+class_name Track
 
 var total_checkpoints: int = 3
 var current_progress: int = 0

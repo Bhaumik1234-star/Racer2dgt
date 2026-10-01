@@ -2,7 +2,7 @@ extends Control
 
 const SECTIONS := [
 	{"title": "PLAYER 1 CONTROLS", "body": "W \u2014 Accelerate\nS \u2014 Reverse / Brake\nA / D \u2014 Steer Left / Right"},
-	{"title": "PLAYER 2 CONTROLS", "body": "\u2129 Up \u2014 Accelerate\n\u2193 Down \u2014 Reverse / Brake\n\u2190 / \u2192 \u2014 Steer Left / Right"},
+	{"title": "PLAYER 2 CONTROLS", "body": "\u2191 Up \u2014 Accelerate\n\u2193 Down \u2014 Reverse / Brake\n\u2190 / \u2192 \u2014 Steer Left / Right"},
 	{"title": "Drift & Boost", "body": "Steer hard while at speed to drift around a corner. Hold the drift and release it to fire off a speed BOOST \u2014 the longer the drift, the bigger the boost."},
 	{"title": "Bumping", "body": "Cars can knock each other around on contact. Use it to defend your line \u2014 or shove a rival off theirs."},
 	{"title": "STAY ON THE ROAD", "body": "Driving onto the grass slows u down a lot. Watch your speedometer in the corner \u2014 it drops fast off-roads."},
@@ -60,7 +60,6 @@ func _build_section(section: Dictionary) -> Control:
 	
 	return card
 	
-
 func _on_star_race_button_pressed() -> void:
 	if click_sfx:
 		click_sfx.play()
@@ -70,6 +69,7 @@ func _on_star_race_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scenes/LevelSelect.tscn")
 
 
+
 func _on_back_button_pressed() -> void:
 	if click_sfx:
 		click_sfx.play()
@@ -77,9 +77,3 @@ func _on_back_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scenes/LevelSelect.tscn")
 	else:
 		get_tree().change_scene_to_file("res://main_menu.tscn")
-		
-	
-	
-
-	
-	

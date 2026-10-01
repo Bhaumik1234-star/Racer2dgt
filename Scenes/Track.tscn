@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://dnqsauajd8425"]
 
-[ext_resource type="Script" uid="uid://6f7fs8tybc5w" path="res://Scripts/Track.gd" id="1_jisw4"]
-[ext_resource type="Texture2D" uid="uid://c1hgo7r6j4so8" path="res://Track.png" id="2_pgi43"]
-[ext_resource type="Script" uid="uid://cbyr1og8vu5th" path="res://Scripts/DynamicCamera.gd" id="3_b8mx1"]
-[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car 1/Car.tscn" id="3_pgi43"]
-[ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car 2/Car2.tscn" id="4_i74gr"]
-[ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="4_qx6ib"]
-[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Player 1 car.png" id="5_tg46a"]
-[ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="5_voge2"]
-[ext_resource type="Texture2D" uid="uid://h8uf7577e6vf" path="res://Bike1 without a bg.png" id="6_tg46a"]
-[ext_resource type="Script" uid="uid://cjg0ybt2oqrit" path="res://Scripts/HalfwayLine.gd" id="7_vlbpn"]
-[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Scenes/Car 2/download (1).png" id="8_g071b"]
-[ext_resource type="Texture2D" uid="uid://uc62cs52ksbm" path="res://Bike 2 without a bg.png" id="9_pbbgl"]
-[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Music/Game Song.mp3" id="11_tg46a"]
-[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="12_pbbgl"]
-[ext_resource type="AudioStream" uid="uid://dcvuub7eug7yj" path="res://Sound Effects/SFX/beep_tick.wav" id="13_m1i7a"]
-[ext_resource type="AudioStream" uid="uid://budiyv3bc745o" path="res://Sound Effects/SFX/beep_go.wav" id="14_48pb1"]
-[ext_resource type="AudioStream" uid="uid://c2nm3aklgesqj" path="res://Sound Effects/SFX/lap_chime.wav" id="17_ymxt0"]
-[ext_resource type="AudioStream" uid="uid://61se0i18od57" path="res://Sound Effects/SFX/win_fanfare.wav" id="18_uj2yq"]
+[ext_resource type="Script" uid="uid://6f7fs8tybc5w" path="res://Scripts/Track.gd" id="1_hilov"]
+[ext_resource type="Texture2D" uid="uid://c1hgo7r6j4so8" path="res://Track.png" id="2_g1gvx"]
+[ext_resource type="Script" uid="uid://cbyr1og8vu5th" path="res://Scripts/DynamicCamera.gd" id="3_55isc"]
+[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car 1/Car.tscn" id="4_i74yt"]
+[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Player 1 car.png" id="5_nto5r"]
+[ext_resource type="Texture2D" uid="uid://h8uf7577e6vf" path="res://Bike1 without a bg.png" id="6_jeqgr"]
+[ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car 2/Car2.tscn" id="7_531yg"]
+[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Scenes/Car 2/download (1).png" id="8_yw7ux"]
+[ext_resource type="Texture2D" uid="uid://uc62cs52ksbm" path="res://Bike 2 without a bg.png" id="9_ifadx"]
+[ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="10_jijaw"]
+[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Music/Game Song.mp3" id="11_wwn0j"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="12_2fxxr"]
+[ext_resource type="AudioStream" uid="uid://dcvuub7eug7yj" path="res://Sound Effects/SFX/beep_tick.wav" id="13_poex8"]
+[ext_resource type="AudioStream" uid="uid://budiyv3bc745o" path="res://Sound Effects/SFX/beep_go.wav" id="14_yxtnb"]
+[ext_resource type="Script" uid="uid://cjg0ybt2oqrit" path="res://Scripts/HalfwayLine.gd" id="15_fngpq"]
+[ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="16_mbn02"]
+[ext_resource type="AudioStream" uid="uid://c2nm3aklgesqj" path="res://Sound Effects/SFX/lap_chime.wav" id="17_5bkom"]
+[ext_resource type="AudioStream" uid="uid://61se0i18od57" path="res://Sound Effects/SFX/win_fanfare.wav" id="18_wo5do"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
 size = Vector2(29.5, 2536)
@@ -96,34 +96,36 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="Track" type="Node" unique_id=80507153]
-script = ExtResource("1_jisw4")
+script = ExtResource("1_hilov")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1368211737]
 position = Vector2(1282, 1283)
 scale = Vector2(2, 2)
-texture = ExtResource("2_pgi43")
+texture = ExtResource("2_g1gvx")
 metadata/_edit_lock_ = true
 
 [node name="DynamicCamera" type="Camera2D" parent="Background" unique_id=1196040003 node_paths=PackedStringArray("car1", "car2")]
-script = ExtResource("3_b8mx1")
+script = ExtResource("3_55isc")
 car1 = NodePath("../Player1")
 car2 = NodePath("../Player2")
 
-[node name="Player1" parent="Background" unique_id=339257769 instance=ExtResource("3_pgi43")]
+[node name="Player1" parent="Background" unique_id=339257769 instance=ExtResource("4_i74yt")]
 position = Vector2(-3.5, -447.5)
 rotation = -0.029785808
 scale = Vector2(0.2870592, 0.23715962)
 collision_mask = 1
 monitoring = false
-car_texture = ExtResource("5_tg46a")
-bike_texture = ExtResource("6_tg46a")
+car_texture = ExtResource("5_nto5r")
+bike_texture = ExtResource("6_jeqgr")
 
-[node name="Player2" parent="Background" unique_id=680478528 instance=ExtResource("4_i74gr")]
+[node name="Player2" parent="Background" unique_id=680478528 instance=ExtResource("7_531yg")]
 position = Vector2(-5.999939, -462)
 scale = Vector2(0.20290364, 0.20290364)
 collision_mask = 1
-car_texture = ExtResource("8_g071b")
-bike_texture = ExtResource("9_pbbgl")
+max_speed = 650.0
+acceleration = 650.0
+car_texture = ExtResource("8_yw7ux")
+bike_texture = ExtResource("9_ifadx")
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0
@@ -145,7 +147,7 @@ position = Vector2(1274.5, 2551.75)
 shape = SubResource("RectangleShape2D_0do6f")
 
 [node name="Off Track" type="Area2D" parent="." unique_id=1559694645]
-script = ExtResource("4_qx6ib")
+script = ExtResource("10_jijaw")
 
 [node name="Off Track" type="CollisionPolygon2D" parent="Off Track" unique_id=57979163]
 position = Vector2(148, 83)
@@ -166,6 +168,7 @@ offset_right = 130.0
 offset_bottom = 134.0
 scale = Vector2(0.86065745, 0.86065745)
 text = "Play Music"
+metadata/_edit_use_anchors_ = true
 
 [node name="VolumeSlider" type="HSlider" parent="CanvasLayer" unique_id=2129436905]
 offset_left = 20.0
@@ -176,9 +179,10 @@ scale = Vector2(1.5072062, 1.5072062)
 max_value = 1.0
 step = 0.01
 value = 0.5
+metadata/_edit_use_anchors_ = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1241998206]
-stream = ExtResource("11_tg46a")
+stream = ExtResource("11_wwn0j")
 
 [node name="CountdownLabel" type="Label" parent="CanvasLayer" unique_id=770732498]
 anchors_preset = 8
@@ -195,17 +199,18 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
-theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_fonts/font = ExtResource("12_2fxxr")
 theme_override_font_sizes/font_size = 130
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="BeepTickSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=738692122]
-stream = ExtResource("13_m1i7a")
+stream = ExtResource("13_poex8")
 
 [node name="BeepGoSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=97603380]
-stream = ExtResource("14_48pb1")
+stream = ExtResource("14_yxtnb")
 
 [node name="SpeedPanel1" type="Panel" parent="CanvasLayer" unique_id=2085856115]
 anchors_preset = 2
@@ -217,6 +222,7 @@ offset_right = 214.0
 offset_bottom = -24.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_48pb1")
+metadata/_edit_use_anchors_ = true
 
 [node name="P1Tag" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=384609726]
 layout_mode = 0
@@ -227,6 +233,7 @@ offset_bottom = 29.0
 theme_override_colors/font_color = Color(0.9490196, 0.54901963, 0.54901963, 1)
 theme_override_font_sizes/font_size = 14
 text = "PLAYER 1"
+metadata/_edit_use_anchors_ = true
 
 [node name="SpeedLabel" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=261426810]
 layout_mode = 0
@@ -234,9 +241,10 @@ offset_left = 10.0
 offset_top = 20.0
 offset_right = 150.0
 offset_bottom = 66.0
-theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_fonts/font = ExtResource("12_2fxxr")
 theme_override_font_sizes/font_size = 40
 text = "0"
+metadata/_edit_use_anchors_ = true
 
 [node name="UnitLabel" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=1200783219]
 layout_mode = 0
@@ -247,6 +255,7 @@ offset_bottom = 67.0
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 13
 text = "Km/H	"
+metadata/_edit_use_anchors_ = true
 
 [node name="BarBG" type="Panel" parent="CanvasLayer/SpeedPanel1" unique_id=232832822]
 layout_mode = 0
@@ -255,11 +264,13 @@ offset_top = 72.0
 offset_right = 178.0
 offset_bottom = 80.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ymxt0")
+metadata/_edit_use_anchors_ = true
 
 [node name="BarFill" type="Panel" parent="CanvasLayer/SpeedPanel1/BarBG" unique_id=1960634988]
 layout_mode = 0
 offset_bottom = 8.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uj2yq")
+metadata/_edit_use_anchors_ = true
 
 [node name="SpeedPanel2" type="Panel" parent="CanvasLayer" unique_id=1971858236]
 anchors_preset = 3
@@ -274,6 +285,7 @@ offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ip5vo")
+metadata/_edit_use_anchors_ = true
 
 [node name="P2Tag" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=1654477464]
 layout_mode = 0
@@ -284,6 +296,7 @@ offset_bottom = 29.0
 theme_override_colors/font_color = Color(0.54901963, 0.7490196, 0.9490196, 1)
 theme_override_font_sizes/font_size = 14
 text = "PLAYER 2"
+metadata/_edit_use_anchors_ = true
 
 [node name="SpeedLabel" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=301415592]
 layout_mode = 0
@@ -291,9 +304,10 @@ offset_left = 10.0
 offset_top = 20.0
 offset_right = 150.0
 offset_bottom = 66.0
-theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_fonts/font = ExtResource("12_2fxxr")
 theme_override_font_sizes/font_size = 40
 text = "0"
+metadata/_edit_use_anchors_ = true
 
 [node name="UnitLabel" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=90059324]
 layout_mode = 0
@@ -304,6 +318,7 @@ offset_bottom = 67.0
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 13
 text = "KM/H"
+metadata/_edit_use_anchors_ = true
 
 [node name="BarBG" type="Panel" parent="CanvasLayer/SpeedPanel2" unique_id=1405924585]
 layout_mode = 0
@@ -312,14 +327,16 @@ offset_top = 72.0
 offset_right = 178.0
 offset_bottom = 80.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x6jkv")
+metadata/_edit_use_anchors_ = true
 
 [node name="BarFill" type="Panel" parent="CanvasLayer/SpeedPanel2/BarBG" unique_id=67559111]
 layout_mode = 0
 offset_bottom = 8.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oaeo0")
+metadata/_edit_use_anchors_ = true
 
 [node name="HalfwayLine" type="Area2D" parent="." unique_id=987983594]
-script = ExtResource("7_vlbpn")
+script = ExtResource("15_fngpq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HalfwayLine" unique_id=1852724192]
 position = Vector2(1376.5, 2159)
@@ -327,13 +344,13 @@ shape = SubResource("RectangleShape2D_i74gr")
 
 [node name="FinishLine" type="Area2D" parent="." unique_id=601186285]
 position = Vector2(9, -9)
-script = ExtResource("5_voge2")
+script = ExtResource("16_mbn02")
 
 [node name="LapChimeSFX" type="AudioStreamPlayer" parent="FinishLine" unique_id=1601951501]
-stream = ExtResource("17_ymxt0")
+stream = ExtResource("17_5bkom")
 
 [node name="WinFanfareSFX" type="AudioStreamPlayer" parent="FinishLine" unique_id=1894808467]
-stream = ExtResource("18_uj2yq")
+stream = ExtResource("18_wo5do")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=511749744]
 position = Vector2(1233.875, 382)
@@ -351,6 +368,7 @@ offset_right = 220.0
 offset_bottom = 56.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m1i7a")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="FinishLine/CanvasLayer/Panel" unique_id=1001396853]
 layout_mode = 1
@@ -359,7 +377,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("12_pbbgl")
+theme_override_fonts/font = ExtResource("12_2fxxr")
 theme_override_font_sizes/font_size = 22
 text = "Lap: 1 / 3"
 horizontal_alignment = 1

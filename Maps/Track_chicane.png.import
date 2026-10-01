@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2m53xcswkyf0"
-path="res://.godot/imported/level3.png-1961331efb38818001b1696362b654a0.ctex"
+uid="uid://5fam5cys8kgx"
+path="res://.godot/imported/Track_chicane.png-f5d8daa0d6f4e41b770fa720d5d14f58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/level3.png"
-dest_files=["res://.godot/imported/level3.png-1961331efb38818001b1696362b654a0.ctex"]
+source_file="res://Maps/Track_chicane.png"
+dest_files=["res://.godot/imported/Track_chicane.png-f5d8daa0d6f4e41b770fa720d5d14f58.ctex"]
 
 [params]
 

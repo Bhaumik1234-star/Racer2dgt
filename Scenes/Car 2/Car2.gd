@@ -1,7 +1,6 @@
 extends Area2D
 class_name Car2
 
-# Set to "p2" for Player 2 controls in Project Settings -> Input Map
 @export var player_prefix: String = "p2"
 
 @export var max_speed: float = 480.0
@@ -11,8 +10,7 @@ class_name Car2
 @export var steer_strength: float = 3.4
 @export var min_steer_factor: float = 0.7
 
-## Grip: how quickly actual movement catches up to the direction the car is
-## facing. Lower values = more drift/slide, higher = more "on rails".
+## Grip: how quickly actual movement catches up to the direction the car is facing.
 @export var grip: float = 9.0
 ## Minimum time (seconds) holding a drift before releasing it gives a boost.
 @export var min_drift_time: float = 0.35
@@ -50,22 +48,14 @@ var boost_speed: float = 0.0
 var spawn_position: Vector2
 var spawn_rotation: float
 
-# Flag used by the halfway line and finish line anti-cheat system
 var passed_halfway: bool = false
 
 
 func _ready() -> void:
-	# Vehicle texture swap based on options selection
 	if GameManager.selected_vehicle == "bike" and bike_texture:
 		sprite.texture = bike_texture
 	elif car_texture:
 		sprite.texture = car_texture
-
-	if GameManager.has_method("get_preset_stats"):
-		var stats = GameManager.get_preset_stats()
-		max_speed *= stats.get("max_speed_mult", 1.0)
-		grip *= stats.get("grip_mult", 1.0)
-		acceleration *= stats.get("accel_mult", 1.0)
 
 	if "p2_color" in GameManager:
 		sprite.modulate = GameManager.p2_color
@@ -75,15 +65,8 @@ func _ready() -> void:
 
 	add_to_group("racers")
 
-	# Connect collision signals for grass, boundaries, and other racers
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
-
-	# Disable internal camera nodes if present
-	if has_node("Cam_Default"): $Cam_Default.enabled = false
-	if has_node("Cam_Chase"): $Cam_Chase.enabled = false
-	if has_node("Cam_Close"): $Cam_Close.enabled = false
-	if has_node("Cam_Tactical"): $Cam_Tactical.enabled = false
 
 
 func _process(_delta: float) -> void:
@@ -225,12 +208,16 @@ func _on_area_exited(area: Area2D) -> void:
 		speed_multiplier = 1.0
 
 
-# Called when Player 2 passes through the finish line
 func lap_completed() -> void:
-	print("P2 Lap Completed!")
+	print("P2 Lap Completed")
 
 
-# Called when Player 2 passes through the halfway line
 func on_hit_halfway() -> void:
 	passed_halfway = true
 	print("P2 Halfway point passed!")
+
+
+# Scales top speed (480) to exactly 100 km/h
+func get_speed_kmh() -> int:
+	var total_speed: float = (move_velocity + (transform.x * boost_speed if boost_timer > 0.0 else Vector2.ZERO)).length()
+	return int(clamp((total_speed / max_speed) * 100.0, 0.0, 100.0))

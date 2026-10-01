@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkfg0nhfyqigw"
-path="res://.godot/imported/level2.png-158e3ec15cb4aa3a2eb5073c38c36ad4.ctex"
+uid="uid://b8oa7oye7ixdt"
+path="res://.godot/imported/Track_neon.png-ff02a0319f7a66e38bd54b87d27a7145.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/level2.png"
-dest_files=["res://.godot/imported/level2.png-158e3ec15cb4aa3a2eb5073c38c36ad4.ctex"]
+source_file="res://Track_neon.png"
+dest_files=["res://.godot/imported/Track_neon.png-ff02a0319f7a66e38bd54b87d27a7145.ctex"]
 
 [params]
 

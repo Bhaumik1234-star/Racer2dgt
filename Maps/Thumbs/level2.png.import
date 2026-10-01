@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w46vks6d0qrj"
-path="res://.godot/imported/level7.png-b1785b2c63056db08f9aac972307dc1d.ctex"
+uid="uid://dkfg0nhfyqigw"
+path="res://.godot/imported/level2.png-2bc6d33bec664782a86d2faaa502f3e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/level7.png"
-dest_files=["res://.godot/imported/level7.png-b1785b2c63056db08f9aac972307dc1d.ctex"]
+source_file="res://Maps/Thumbs/level2.png"
+dest_files=["res://.godot/imported/level2.png-2bc6d33bec664782a86d2faaa502f3e5.ctex"]
 
 [params]
 
