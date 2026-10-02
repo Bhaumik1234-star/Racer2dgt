@@ -1,23 +1,255 @@
 [gd_scene format=3 uid="uid://dnqsauajd8425"]
 
-[ext_resource type="Script" uid="uid://6f7fs8tybc5w" path="res://Scripts/Track.gd" id="1_hilov"]
-[ext_resource type="Texture2D" uid="uid://c1hgo7r6j4so8" path="res://Track.png" id="2_g1gvx"]
+[ext_resource type="Texture2D" uid="uid://c1hgo7r6j4so8" path="res://Maps/Track.png" id="2_g1gvx"]
 [ext_resource type="Script" uid="uid://cbyr1og8vu5th" path="res://Scripts/DynamicCamera.gd" id="3_55isc"]
-[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car 1/Car.tscn" id="4_i74yt"]
-[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Player 1 car.png" id="5_nto5r"]
-[ext_resource type="Texture2D" uid="uid://h8uf7577e6vf" path="res://Bike1 without a bg.png" id="6_jeqgr"]
-[ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car 2/Car2.tscn" id="7_531yg"]
-[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Scenes/Car 2/download (1).png" id="8_yw7ux"]
-[ext_resource type="Texture2D" uid="uid://uc62cs52ksbm" path="res://Bike 2 without a bg.png" id="9_ifadx"]
+[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car.tscn" id="4_i74yt"]
+[ext_resource type="Texture2D" uid="uid://6xqm5c033swc" path="res://Image/Bike 1/Bike1.png" id="5_m1hkt"]
+[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Image/Car 1/Player 1 car.png" id="5_nto5r"]
+[ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car2.tscn" id="7_531yg"]
+[ext_resource type="Texture2D" uid="uid://g38idly343pa" path="res://Image/Bike 2/Bike2.png" id="8_88u2p"]
+[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Image/Car 2/download (1).png" id="8_yw7ux"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="10_jijaw"]
-[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Music/Game Song.mp3" id="11_wwn0j"]
-[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="12_2fxxr"]
-[ext_resource type="AudioStream" uid="uid://dcvuub7eug7yj" path="res://Sound Effects/SFX/beep_tick.wav" id="13_poex8"]
-[ext_resource type="AudioStream" uid="uid://budiyv3bc745o" path="res://Sound Effects/SFX/beep_go.wav" id="14_yxtnb"]
+[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Audio/Music/Game Song.mp3" id="11_wwn0j"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Font Style/Hoshiko Satsuki.ttf" id="12_2fxxr"]
+[ext_resource type="AudioStream" uid="uid://f6pg0pe7wjbe" path="res://Audio/Sound Effects/SFX/beep_tick.wav" id="13_poex8"]
+[ext_resource type="AudioStream" uid="uid://b6vccd84cb6ia" path="res://Audio/Sound Effects/SFX/beep_go.wav" id="14_yxtnb"]
 [ext_resource type="Script" uid="uid://cjg0ybt2oqrit" path="res://Scripts/HalfwayLine.gd" id="15_fngpq"]
 [ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="16_mbn02"]
-[ext_resource type="AudioStream" uid="uid://c2nm3aklgesqj" path="res://Sound Effects/SFX/lap_chime.wav" id="17_5bkom"]
-[ext_resource type="AudioStream" uid="uid://61se0i18od57" path="res://Sound Effects/SFX/win_fanfare.wav" id="18_wo5do"]
+[ext_resource type="AudioStream" uid="uid://bkax2o01w6v5k" path="res://Audio/Sound Effects/SFX/lap_chime.wav" id="17_5bkom"]
+[ext_resource type="AudioStream" uid="uid://dnexsec1ariyw" path="res://Audio/Sound Effects/SFX/win_fanfare.wav" id="18_wo5do"]
+
+[sub_resource type="GDScript" id="GDScript_np2yo"]
+script/source = "extends Node
+class_name Track
+
+var total_checkpoints: int = 3
+var current_progress: int = 0
+
+var max_laps: int = 3
+var current_lap: int = 1
+var is_game_over: bool = false
+
+var can_trigger_start: bool = true
+
+# Independent lap trackers for P1 and P2
+var p1_laps: int = 1
+var p2_laps: int = 1
+
+@onready var music_player = $CanvasLayer/MusicPlayer if has_node(\"CanvasLayer/MusicPlayer\") else null
+@onready var music_button = $CanvasLayer/MusicButton if has_node(\"CanvasLayer/MusicButton\") else null
+@onready var label = $CanvasLayer/Label if has_node(\"CanvasLayer/Label\") else null
+@onready var volume_slider = $CanvasLayer/VolumeSlider if has_node(\"CanvasLayer/VolumeSlider\") else null
+
+@onready var countdown_label = $CanvasLayer/CountdownLabel if has_node(\"CanvasLayer/CountdownLabel\") else null
+@onready var beep_tick_sfx = $CanvasLayer/BeepTickSFX if has_node(\"CanvasLayer/BeepTickSFX\") else null
+@onready var beep_go_sfx = $CanvasLayer/BeepGoSFX if has_node(\"CanvasLayer/BeepGoSFX\") else null
+
+@onready var player1 = $Background/Player1 if has_node(\"Background/Player1\") else null
+@onready var player2 = $Background/Player2 if has_node(\"Background/Player2\") else null
+@onready var dynamic_camera = $Background/DynamicCamera if has_node(\"Background/DynamicCamera\") else null
+
+# UI node references assigned safely in _ready()
+var p1_speed_label: Label = null
+var p1_speed_bar: Control = null
+var p2_speed_label: Label = null
+var p2_speed_bar: Control = null
+var speed_panel_p2: Control = null
+
+
+func _ready() -> void:
+	if \"max_laps\" in GameManager:
+		max_laps = GameManager.max_laps
+
+	# Safe UI node discovery
+	p1_speed_label = _get_ui_node([\"CanvasLayer/SpeedPanel1/SpeedLabel\", \"CanvasLayer/SpeedPanelP1/SpeedLabel\"])
+	p1_speed_bar = _get_ui_node([\"CanvasLayer/SpeedPanel1/BarBG/BarFill\", \"CanvasLayer/SpeedPanelP1/BarBG/BarFill\"])
+	
+	p2_speed_label = _get_ui_node([\"CanvasLayer/SpeedPanel2/SpeedLabel\", \"CanvasLayer/SpeedPanelP2/SpeedLabel\"])
+	p2_speed_bar = _get_ui_node([\"CanvasLayer/SpeedPanel2/BarBG/BarFill\", \"CanvasLayer/SpeedPanelP2/BarBG/BarFill\"])
+	speed_panel_p2 = _get_ui_node([\"CanvasLayer/SpeedPanelP2\", \"CanvasLayer/SpeedPanel2\"])
+
+	GameManager.apply_master_volume()
+	
+	# Disable Player 2 if single-player mode is active
+	if GameManager.single_player and player2:
+		player2.visible = false
+		player2.set_physics_process(false)
+		player2.set_process(false)
+		player2.monitoring = false
+		player2.monitorable = false
+		player2.remove_from_group(\"racers\")
+		if dynamic_camera:
+			dynamic_camera.car2 = null
+		if speed_panel_p2:
+			speed_panel_p2.visible = false
+	
+	if volume_slider:
+		_on_volume_slider_value_changed(volume_slider.value)
+		
+	update_lap_ui()
+	_start_countdown()
+
+
+func _process(_delta: float) -> void:
+	_update_speedometer(player1, p1_speed_label, p1_speed_bar)
+	_update_speedometer(player2, p2_speed_label, p2_speed_bar)
+
+
+func _update_speedometer(car, speed_label, speed_bar) -> void:
+	if not car or not is_instance_valid(car):
+		return
+		
+	var kmh: int = 0
+	if car.has_method(\"get_speed_kmh\"):
+		kmh = car.get_speed_kmh()
+
+	if speed_label:
+		speed_label.text = \"%d\" % kmh
+
+	if speed_bar and speed_bar.get_parent():
+		var ratio: float = clamp(float(kmh) / 100.0, 0.0, 1.0)
+		var bg_width: float = speed_bar.get_parent().size.x
+		speed_bar.size.x = bg_width * ratio
+
+
+func _start_countdown() -> void:
+	if player1:
+		if \"input_enable\" in player1: player1.input_enable = false
+		elif \"input_enabled\" in player1: player1.input_enabled = false
+		else: player1.set_physics_process(false)
+		
+	if player2:
+		if \"input_enable\" in player2: player2.input_enable = false
+		elif \"input_enabled\" in player2: player2.input_enabled = false
+		else: player2.set_physics_process(false)
+	
+	if countdown_label:
+		countdown_label.show()
+		
+	for n in [\"3\", \"2\", \"1\"]:
+		if countdown_label:
+			countdown_label.text = n
+			countdown_label.modulate = Color(1, 1, 1, 1)
+		if beep_tick_sfx:
+			beep_tick_sfx.play()
+		await get_tree().create_timer(0.8).timeout
+	
+	if countdown_label:
+		countdown_label.text = \"Go!\"
+		countdown_label.modulate = Color(0.3, 1.0, 0.3, 1)
+	if beep_go_sfx:
+		beep_go_sfx.play()
+		
+	if player1:
+		if \"input_enable\" in player1: player1.input_enable = true
+		elif \"input_enabled\" in player1: player1.input_enabled = true
+		else: player1.set_physics_process(true)
+		
+	if player2:
+		if \"input_enable\" in player2: player2.input_enable = true
+		elif \"input_enabled\" in player2: player2.input_enabled = true
+		else: player2.set_physics_process(true)
+	
+	await get_tree().create_timer(0.6).timeout
+	if countdown_label:
+		countdown_label.hide()
+
+
+func update_lap_ui() -> void:
+	if label:
+		label.text = \"Lap: %d / %d\" % [current_lap, max_laps]
+
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(\"Master\"), linear_to_db(value))
+
+
+func _on_music_button_pressed() -> void:
+	if music_player:
+		if music_player.playing:
+			music_player.stop()
+			if music_button: music_button.text = \"Play Music\"
+		else:
+			music_player.play()
+			if music_button: music_button.text = \"Pause Music\"
+
+
+func _get_car(area: Area2D):
+	if area is Car or area is Car2:
+		return area
+	elif area.get_parent() is Car or area.get_parent() is Car2:
+		return area.get_parent()
+	return null
+
+
+func _on_track_collision_area_entered(area: Area2D) -> void:
+	if area.has_method(\"hit_boundary\"):
+		area.hit_boundary()
+
+
+# Start / Finish line trigger
+func _on_start_line_area_entered(area: Area2D) -> void:
+	if is_game_over or not can_trigger_start:
+		return
+
+	var car = _get_car(area)
+	if not car:
+		return
+
+	# Require car to cross halfway checkpoint first
+	if \"passed_halfway\" in car and not car.passed_halfway:
+		return
+
+	car.passed_halfway = false
+
+	if car == player1:
+		p1_laps += 1
+		current_lap = max(p1_laps, p2_laps)
+		update_lap_ui()
+		if p1_laps > max_laps:
+			_complete_race(\"Player 1\")
+
+	elif car == player2:
+		p2_laps += 1
+		current_lap = max(p1_laps, p2_laps)
+		update_lap_ui()
+		if p2_laps > max_laps:
+			_complete_race(\"Player 2\")
+
+
+# Halfway checkpoint trigger
+func _on_halfway_checkpoint_area_entered(area: Area2D) -> void:
+	var car = _get_car(area)
+	if car and \"passed_halfway\" in car:
+		car.passed_halfway = true
+
+
+# Race completion & unlock execution
+func _complete_race(winner_name: String) -> void:
+	is_game_over = true
+	print(\"Race Finished! Winner: \", winner_name)
+
+	if label:
+		label.text = winner_name + \" Wins!\"
+
+	# Automatically unlocks the next level in GameManager and saves progress
+	GameManager.unlock_next_level_if_earned(GameManager.current_level)
+
+	# Transition back to LevelSelect.tscn inside Scenes folder
+	await get_tree().create_timer(2.5).timeout
+	
+	if ResourceLoader.exists(\"res://Scenes/LevelSelect.tscn\"):
+		get_tree().change_scene_to_file(\"res://Scenes/LevelSelect.tscn\")
+	else:
+		get_tree().change_scene_to_file(\"res://Scenes/main_menu.tscn\")
+
+
+func _get_ui_node(paths: Array):
+	for p in paths:
+		if has_node(p):
+			return get_node(p)
+	return null
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ld5s"]
 size = Vector2(29.5, 2536)
@@ -96,7 +328,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="Track" type="Node" unique_id=80507153]
-script = ExtResource("1_hilov")
+script = SubResource("GDScript_np2yo")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1368211737]
 position = Vector2(1282, 1283)
@@ -116,7 +348,7 @@ scale = Vector2(0.2870592, 0.23715962)
 collision_mask = 1
 monitoring = false
 car_texture = ExtResource("5_nto5r")
-bike_texture = ExtResource("6_jeqgr")
+bike_texture = ExtResource("5_m1hkt")
 
 [node name="Player2" parent="Background" unique_id=680478528 instance=ExtResource("7_531yg")]
 position = Vector2(-5.999939, -462)
@@ -125,7 +357,7 @@ collision_mask = 1
 max_speed = 650.0
 acceleration = 650.0
 car_texture = ExtResource("8_yw7ux")
-bike_texture = ExtResource("9_ifadx")
+bike_texture = ExtResource("8_88u2p")
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=805986857]
 collision_layer = 0

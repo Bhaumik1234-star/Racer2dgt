@@ -1,17 +1,25 @@
 extends Area2D
 
-const MAX_LAPS: int = 3
+# Dynamic max laps loaded from GameManager
+var target_max_laps: int = 3
 
-# Generic per-racer lap tracking so this isn't hardcoded to just p1/p2.
-var laps: Dictionary = {}   # car (Node) -> int lap count
-var _order: Array = []      # display order (first car seen = P1, etc.)
+# Generic per-racer lap tracking
+var laps: Dictionary = {}    # car (Node) -> int lap count
+var _order: Array = []       # display order (first car seen = P1, etc.)
 var race_finished: bool = false
 
 @onready var label = $CanvasLayer/Panel/Label if has_node("CanvasLayer/Panel/Label") else null
 @onready var lap_sfx: AudioStreamPlayer = $LapChimeSFX if has_node("LapChimeSFX") else null
 @onready var win_sfx: AudioStreamPlayer = $WinFanfareSFX if has_node("WinFanfareSFX") else null
 
+
 func _ready() -> void:
+	# Pull selected lap count (3, 5, or 7) directly from GameManager
+	if "max_laps" in GameManager and GameManager.max_laps > 0:
+		target_max_laps = GameManager.max_laps
+	else:
+		target_max_laps = 3
+
 	update_label()
 
 
@@ -33,14 +41,15 @@ func _display_name(car: Node) -> String:
 func update_label() -> void:
 	if not label:
 		return
-	# Sort by lap count (then finish order) to show current standings.
+
+	# Sort by lap count to display current standings
 	var ranked = _order.duplicate()
 	ranked.sort_custom(func(a, b): return laps.get(a, 0) > laps.get(b, 0))
 	var parts: Array = []
 	for car in ranked:
 		if not is_instance_valid(car):
 			continue
-		parts.append("%s: %d/%d" % [_display_name(car), laps.get(car, 0), MAX_LAPS])
+		parts.append("%s: %d/%d" % [_display_name(car), laps.get(car, 0), target_max_laps])
 	label.text = " | ".join(parts)
 
 
@@ -61,15 +70,25 @@ func _on_area_entered(area: Area2D) -> void:
 
 			print(_display_name(car), " Lap: ", laps[car])
 
-			if laps[car] >= MAX_LAPS:
+			# Check win condition against chosen target max laps
+			if laps[car] >= target_max_laps:
 				race_finished = true
 				print(_display_name(car), " wins the race!")
+				
 				if label:
 					label.text = "%s WINS!" % _display_name(car)
 				if win_sfx:
 					win_sfx.play()
+
+				# Unlock next level automatically when race completes
+				GameManager.unlock_next_level_if_earned(GameManager.current_level)
+
 				await get_tree().create_timer(1.4).timeout
-				get_tree().change_scene_to_file("res://WinScene.tscn")
+				
+				if ResourceLoader.exists("res://Scenes/WinScene.tscn"):
+					get_tree().change_scene_to_file("res://Scenes/WinScene.tscn")
+				else:
+					get_tree().change_scene_to_file("res://Scenes/LevelSelect.tscn")
 			else:
 				if lap_sfx:
 					lap_sfx.play()
@@ -82,7 +101,7 @@ func _on_area_entered(area: Area2D) -> void:
 				label.modulate = Color(1, 0, 0)
 
 			await get_tree().create_timer(1.5).timeout
-			get_tree().change_scene_to_file("res://main_menu.tscn")
+			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 
 func _get_car(area: Area2D):

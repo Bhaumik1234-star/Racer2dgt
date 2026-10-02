@@ -1,0 +1,392 @@
+[gd_scene format=3 uid="uid://dcwgtu2iblr8k"]
+
+[ext_resource type="Texture2D" uid="uid://5fam5cys8kgx" path="res://Maps/Track_chicane.png" id="1_2d10t"]
+[ext_resource type="Script" uid="uid://vfmvthj2xnd5" path="res://Scripts/TrackLevel3.gd" id="1_q42hm"]
+[ext_resource type="Script" uid="uid://cbyr1og8vu5th" path="res://Scripts/DynamicCamera.gd" id="2_3oo01"]
+[ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car.tscn" id="3_tcouf"]
+[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Image/Car 1/Player 1 car.png" id="4_cwjfq"]
+[ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car2.tscn" id="6_gynb2"]
+[ext_resource type="Texture2D" uid="uid://6xqm5c033swc" path="res://Image/Bike 1/Bike1.png" id="6_q42hm"]
+[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Image/Car 2/download (1).png" id="7_3ntqp"]
+[ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="9_r70qs"]
+[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Audio/Music/Game Song.mp3" id="10_q42hm"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Font Style/Hoshiko Satsuki.ttf" id="11_uwrst"]
+[ext_resource type="AudioStream" uid="uid://f6pg0pe7wjbe" path="res://Audio/Sound Effects/SFX/beep_tick.wav" id="12_mmmud"]
+[ext_resource type="AudioStream" uid="uid://b6vccd84cb6ia" path="res://Audio/Sound Effects/SFX/beep_go.wav" id="13_5a3t2"]
+[ext_resource type="Script" uid="uid://cjg0ybt2oqrit" path="res://Scripts/HalfwayLine.gd" id="14_4mhwx"]
+[ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="15_w0v4p"]
+[ext_resource type="AudioStream" uid="uid://bkax2o01w6v5k" path="res://Audio/Sound Effects/SFX/lap_chime.wav" id="16_kbvvd"]
+[ext_resource type="AudioStream" uid="uid://dnexsec1ariyw" path="res://Audio/Sound Effects/SFX/win_fanfare.wav" id="17_acy4t"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r70qs"]
+load_path = "res://.godot/imported/Bike2.png-81565fa958bc982e39a41b392a00ff2a.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r70qs"]
+size = Vector2(64.75, 1971.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q42hm"]
+size = Vector2(2461, 27)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwrst"]
+bg_color = Color(0.078431375, 0.050980393, 0.050980393, 0.72156864)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9490196, 0.2509804, 0.2509804, 0.8509804)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmmud"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a3t2"]
+bg_color = Color(0.9490196, 0.2509804, 0.2509804, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mhwx"]
+bg_color = Color(0.050980393, 0.050980393, 0.078431375, 0.72156864)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3019608, 0.54901963, 0.9490196, 0.8509804)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0v4p"]
+bg_color = Color(1, 1, 1, 0.12156863)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbvvd"]
+bg_color = Color(0.3019608, 0.54901963, 0.9490196, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acy4t"]
+size = Vector2(32.5, 261)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flf2t"]
+size = Vector2(36, 242.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4mpb"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.7490196, 0.2, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Track" type="Node" unique_id=1066691861]
+script = ExtResource("1_q42hm")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=705809597]
+position = Vector2(1238.0001, 1006)
+scale = Vector2(0.76260257, 0.76260257)
+texture = ExtResource("1_2d10t")
+metadata/_edit_lock_ = true
+
+[node name="DynamicCamera" type="Camera2D" parent="Background" unique_id=771179670 node_paths=PackedStringArray("car1", "car2")]
+script = ExtResource("2_3oo01")
+car1 = NodePath("../Player1")
+car2 = NodePath("../Player2")
+
+[node name="Player1" parent="Background" unique_id=339257769 instance=ExtResource("3_tcouf")]
+position = Vector2(-431.41748, -548.123)
+rotation = -0.029785808
+scale = Vector2(1.8566898, 1.5339409)
+collision_mask = 1
+monitoring = false
+max_speed = 300.0
+acceleration = 200.0
+car_texture = ExtResource("4_cwjfq")
+bike_texture = ExtResource("6_q42hm")
+
+[node name="Player2" parent="Background" unique_id=1952220992 instance=ExtResource("6_gynb2")]
+position = Vector2(-437.97397, -730.39355)
+scale = Vector2(1.5532475, 1.5532475)
+collision_mask = 1
+max_speed = 300.0
+acceleration = 200.0
+car_texture = ExtResource("7_3ntqp")
+bike_texture = SubResource("CompressedTexture2D_r70qs")
+
+[node name="Track Collision" type="Area2D" parent="." unique_id=1672878184]
+collision_layer = 0
+
+[node name="Track Edge1" type="CollisionShape2D" parent="Track Collision" unique_id=2015121581]
+position = Vector2(-1, 996)
+shape = SubResource("RectangleShape2D_r70qs")
+
+[node name="Track Edge2" type="CollisionShape2D" parent="Track Collision" unique_id=1660374381]
+position = Vector2(2463.625, 1001.4375)
+shape = SubResource("RectangleShape2D_r70qs")
+
+[node name="Track Edge3" type="CollisionShape2D" parent="Track Collision" unique_id=1687116814]
+position = Vector2(1234.5, 15)
+shape = SubResource("RectangleShape2D_q42hm")
+
+[node name="Track Edge4" type="CollisionShape2D" parent="Track Collision" unique_id=943666848]
+position = Vector2(1274.5, 1988.5)
+shape = SubResource("RectangleShape2D_q42hm")
+
+[node name="Off Track" type="Area2D" parent="." unique_id=914779433]
+script = ExtResource("9_r70qs")
+
+[node name="Off Track" type="CollisionPolygon2D" parent="Off Track" unique_id=471871527]
+position = Vector2(485, 54)
+polygon = PackedVector2Array(159, 774, 170, 700, 211, 638, 261, 593, 313, 582, 395, 583, 553, 576, 949, 582, 1093, 619, 1230, 642, 1320, 660, 1357, 708, 1359, 1041, 1357, 1136, 1321, 1235, 1268, 1293, 1215, 1322, 1140, 1331, 982, 1330, 618, 1327, 415, 1333, 267, 1310, 181, 1246, 149, 1175, 151, 1070, 146, 924)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Off Track" unique_id=1541548749]
+position = Vector2(-161, -45)
+polygon = PackedVector2Array(154, 1318, 591, 1387, 552, 1175, 554, 1100, 559, 868, 574, 748, 616, 673, 676, 585, 771, 506, 884, 450, 1073, 429, 1292, 439, 1620, 435, 1753, 474, 1879, 504, 2023, 523, 2115, 568, 2230, 694, 2256, 832, 2243, 992, 2239, 1119, 2259, 1208, 2224, 1363, 2183, 1455, 2119, 1533, 2020, 1616, 1900, 1653, 1729, 1665, 1418, 1668, 1146, 1672, 966, 1668, 848, 1646, 769, 1610, 673, 1540, 610, 1436, 595, 1400, 149, 1333, 207, 2021, 2588, 2038, 2604, 65, 193, 84, 165, 1273)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=640856007]
+
+[node name="MusicButton" type="Button" parent="CanvasLayer" unique_id=805623263]
+offset_left = 21.0
+offset_top = 101.0
+offset_right = 130.0
+offset_bottom = 134.0
+scale = Vector2(0.86065745, 0.86065745)
+text = "Play Music"
+metadata/_edit_use_anchors_ = true
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer" unique_id=1064329807]
+offset_left = 20.0
+offset_top = 129.0
+offset_right = 150.70541
+offset_bottom = 145.0
+scale = Vector2(1.5072062, 1.5072062)
+max_value = 1.0
+step = 0.01
+value = 0.5
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=584523300]
+stream = ExtResource("10_q42hm")
+
+[node name="CountdownLabel" type="Label" parent="CanvasLayer" unique_id=941894646]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -105.5
+offset_right = 150.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("11_uwrst")
+theme_override_font_sizes/font_size = 130
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BeepTickSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1913743099]
+stream = ExtResource("12_mmmud")
+
+[node name="BeepGoSFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1617072663]
+stream = ExtResource("13_5a3t2")
+
+[node name="SpeedPanel1" type="Panel" parent="CanvasLayer" unique_id=1987208429]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.38900003
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = -102.0
+offset_right = -215.12802
+offset_bottom = -16.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwrst")
+metadata/_edit_use_anchors_ = true
+
+[node name="P1Tag" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=938015108]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 90.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.9490196, 0.54901963, 0.54901963, 1)
+theme_override_font_sizes/font_size = 14
+text = "PLAYER 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=2106214162]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("11_uwrst")
+theme_override_font_sizes/font_size = 40
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitLabel" type="Label" parent="CanvasLayer/SpeedPanel1" unique_id=289867330]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 44.0
+offset_right = 194.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "Km/H	"
+metadata/_edit_use_anchors_ = true
+
+[node name="BarBG" type="Panel" parent="CanvasLayer/SpeedPanel1" unique_id=135010640]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 72.0
+offset_right = 178.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mmmud")
+metadata/_edit_use_anchors_ = true
+
+[node name="BarFill" type="Panel" parent="CanvasLayer/SpeedPanel1/BarBG" unique_id=1808357397]
+layout_mode = 0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5a3t2")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedPanel2" type="Panel" parent="CanvasLayer" unique_id=200658024]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -199.0
+offset_top = -104.0
+offset_right = -9.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4mhwx")
+metadata/_edit_use_anchors_ = true
+
+[node name="P2Tag" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=1800662710]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 90.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0.54901963, 0.7490196, 0.9490196, 1)
+theme_override_font_sizes/font_size = 14
+text = "PLAYER 2"
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=347767057]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("11_uwrst")
+theme_override_font_sizes/font_size = 40
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="UnitLabel" type="Label" parent="CanvasLayer/SpeedPanel2" unique_id=1820962322]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 44.0
+offset_right = 194.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "KM/H"
+metadata/_edit_use_anchors_ = true
+
+[node name="BarBG" type="Panel" parent="CanvasLayer/SpeedPanel2" unique_id=120106536]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 72.0
+offset_right = 178.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w0v4p")
+metadata/_edit_use_anchors_ = true
+
+[node name="BarFill" type="Panel" parent="CanvasLayer/SpeedPanel2/BarBG" unique_id=11209943]
+layout_mode = 0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbvvd")
+metadata/_edit_use_anchors_ = true
+
+[node name="HalfwayLine" type="Area2D" parent="." unique_id=2057475265]
+script = ExtResource("14_4mhwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HalfwayLine" unique_id=1853290636]
+position = Vector2(1324.25, 1492.5)
+shape = SubResource("RectangleShape2D_acy4t")
+
+[node name="FinishLine" type="Area2D" parent="." unique_id=615830389]
+position = Vector2(9, -9)
+script = ExtResource("15_w0v4p")
+
+[node name="LapChimeSFX" type="AudioStreamPlayer" parent="FinishLine" unique_id=1986982227]
+stream = ExtResource("16_kbvvd")
+
+[node name="WinFanfareSFX" type="AudioStreamPlayer" parent="FinishLine" unique_id=1034100053]
+stream = ExtResource("17_acy4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=1585768987]
+position = Vector2(836, 519.75)
+shape = SubResource("RectangleShape2D_flf2t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="FinishLine" unique_id=704199685]
+
+[node name="Panel" type="Panel" parent="FinishLine/CanvasLayer" unique_id=663427784]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 43.0
+offset_right = 230.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s4mpb")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="FinishLine/CanvasLayer/Panel" unique_id=301075659]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0022727272
+anchor_top = -0.04761905
+anchor_right = 0.9977273
+anchor_bottom = 0.95238096
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_uwrst")
+theme_override_font_sizes/font_size = 22
+text = "Lap: 1 / 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="FinishLine" to="FinishLine" method="_on_area_entered"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6vccd84cb6ia"
+path="res://.godot/imported/beep_go.wav-d5f2884c2e0ec91bf30677431e9bf970.sample"
+
+[deps]
+
+source_file="res://Audio/Sound Effects/SFX/beep_go.wav"
+dest_files=["res://.godot/imported/beep_go.wav-d5f2884c2e0ec91bf30677431e9bf970.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c8e81ibdusi8p"]
 
-[ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://MAP.png" id="1_7bloo"]
+[ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://Maps/MAP.png" id="1_7bloo"]
 [ext_resource type="Script" uid="uid://cbsi574k87pw8" path="res://Scripts/Tutorial.gd" id="1_rlm2d"]
-[ext_resource type="AudioStream" uid="uid://cdfwl23d8mp2m" path="res://Sound Effects/SFX/ui_click.wav" id="2_rlm2d"]
-[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Music/Game Song.mp3" id="3_3j26a"]
-[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="4_x7a1n"]
+[ext_resource type="AudioStream" uid="uid://dror61e2dawew" path="res://Audio/Sound Effects/SFX/ui_click.wav" id="2_rlm2d"]
+[ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Audio/Music/Game Song.mp3" id="3_3j26a"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Font Style/Hoshiko Satsuki.ttf" id="4_x7a1n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vv0ms"]
 texture = ExtResource("1_7bloo")

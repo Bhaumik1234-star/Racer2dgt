@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b174lrbxfybjp"]
 
-[ext_resource type="Script" uid="uid://dy5adbuqkmt7q" path="res://Scenes/LevelSelect.gd" id="1_1qomi"]
-[ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://MAP.png" id="1_fo23m"]
-[ext_resource type="AudioStream" uid="uid://cdfwl23d8mp2m" path="res://Sound Effects/SFX/ui_click.wav" id="2_1cx81"]
-[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Hoshiko Satsuki.ttf" id="3_1cx81"]
+[ext_resource type="Script" uid="uid://dy5adbuqkmt7q" path="res://Scripts/LevelSelect.gd" id="1_1qomi"]
+[ext_resource type="Texture2D" uid="uid://djnx446t7ojr5" path="res://Maps/MAP.png" id="1_fo23m"]
+[ext_resource type="AudioStream" uid="uid://dror61e2dawew" path="res://Audio/Sound Effects/SFX/ui_click.wav" id="2_1cx81"]
+[ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Font Style/Hoshiko Satsuki.ttf" id="3_1cx81"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1qomi"]
 texture = ExtResource("1_fo23m")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1mmpgtx2ei2g"
+path="res://.godot/imported/freesound_community-rally-car-idle-loop-14-32339.mp3-163259e41e05cb6b9199288079a7ba4c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound Effects/SFX/freesound_community-rally-car-idle-loop-14-32339.mp3"
+dest_files=["res://.godot/imported/freesound_community-rally-car-idle-loop-14-32339.mp3-163259e41e05cb6b9199288079a7ba4c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

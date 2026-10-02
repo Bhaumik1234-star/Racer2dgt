@@ -76,4 +76,4 @@ func _on_back_button_pressed() -> void:
 	if GameManager.pending_level_scene != "":
 		get_tree().change_scene_to_file("res://Scenes/LevelSelect.tscn")
 	else:
-		get_tree().change_scene_to_file("res://main_menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
