@@ -4,10 +4,8 @@
 [ext_resource type="Script" uid="uid://vfmvthj2xnd5" path="res://Scripts/TrackLevel3.gd" id="1_q42hm"]
 [ext_resource type="Script" uid="uid://cbyr1og8vu5th" path="res://Scripts/DynamicCamera.gd" id="2_3oo01"]
 [ext_resource type="PackedScene" uid="uid://dimnaw5e7thi6" path="res://Scenes/Car.tscn" id="3_tcouf"]
-[ext_resource type="Texture2D" uid="uid://dessb1gl3mne5" path="res://Image/Car 1/Player 1 car.png" id="4_cwjfq"]
 [ext_resource type="PackedScene" uid="uid://cwqfvexeb15hq" path="res://Scenes/Car2.tscn" id="6_gynb2"]
-[ext_resource type="Texture2D" uid="uid://6xqm5c033swc" path="res://Image/Bike 1/Bike1.png" id="6_q42hm"]
-[ext_resource type="Texture2D" uid="uid://dfkpmh8g0ls51" path="res://Image/Car 2/download (1).png" id="7_3ntqp"]
+[ext_resource type="Texture2D" uid="uid://g38idly343pa" path="res://Image/Bike 2/Bike2.png" id="9_q42hm"]
 [ext_resource type="Script" uid="uid://dg56yani5nqb2" path="res://Scripts/OffTrack.gd" id="9_r70qs"]
 [ext_resource type="AudioStream" uid="uid://dfmagq4kvqle1" path="res://Audio/Music/Game Song.mp3" id="10_q42hm"]
 [ext_resource type="FontFile" uid="uid://c45ggjx6dsfvw" path="res://Font Style/Hoshiko Satsuki.ttf" id="11_uwrst"]
@@ -17,9 +15,6 @@
 [ext_resource type="Script" uid="uid://sibr5doe7u55" path="res://Scripts/FinishLine.gd" id="15_w0v4p"]
 [ext_resource type="AudioStream" uid="uid://bkax2o01w6v5k" path="res://Audio/Sound Effects/SFX/lap_chime.wav" id="16_kbvvd"]
 [ext_resource type="AudioStream" uid="uid://dnexsec1ariyw" path="res://Audio/Sound Effects/SFX/win_fanfare.wav" id="17_acy4t"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r70qs"]
-load_path = "res://.godot/imported/Bike2.png-81565fa958bc982e39a41b392a00ff2a.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r70qs"]
 size = Vector2(64.75, 1971.125)
@@ -119,8 +114,6 @@ collision_mask = 1
 monitoring = false
 max_speed = 300.0
 acceleration = 200.0
-car_texture = ExtResource("4_cwjfq")
-bike_texture = ExtResource("6_q42hm")
 
 [node name="Player2" parent="Background" unique_id=1952220992 instance=ExtResource("6_gynb2")]
 position = Vector2(-437.97397, -730.39355)
@@ -128,8 +121,7 @@ scale = Vector2(1.5532475, 1.5532475)
 collision_mask = 1
 max_speed = 300.0
 acceleration = 200.0
-car_texture = ExtResource("7_3ntqp")
-bike_texture = SubResource("CompressedTexture2D_r70qs")
+bike_texture = ExtResource("9_q42hm")
 
 [node name="Track Collision" type="Area2D" parent="." unique_id=1672878184]
 collision_layer = 0

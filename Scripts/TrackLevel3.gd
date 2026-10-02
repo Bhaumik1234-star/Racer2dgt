@@ -1,28 +1,30 @@
 extends Node
 class_name TrackController
 
+# Controls race flow, countdown timers, lap tracking, HUD speedometers, and level completion
+
+# Race progression tracking
 var total_checkpoints: int = 3
 var current_progress: int = 0
-
 var max_laps: int = 3
 var current_lap: int = 1
 var is_game_over: bool = false
-
 var can_trigger_start: bool = true
 
 # Independent lap trackers for P1 and P2
 var p1_laps: int = 1
 var p2_laps: int = 1
 
+# Node references for audio and UI
 @onready var music_player = $CanvasLayer/MusicPlayer if has_node("CanvasLayer/MusicPlayer") else null
 @onready var music_button = $CanvasLayer/MusicButton if has_node("CanvasLayer/MusicButton") else null
 @onready var label = $CanvasLayer/Label if has_node("CanvasLayer/Label") else null
 @onready var volume_slider = $CanvasLayer/VolumeSlider if has_node("CanvasLayer/VolumeSlider") else null
-
+# Countdown timer node references
 @onready var countdown_label = $CanvasLayer/CountdownLabel if has_node("CanvasLayer/CountdownLabel") else null
 @onready var beep_tick_sfx = $CanvasLayer/BeepTickSFX if has_node("CanvasLayer/BeepTickSFX") else null
 @onready var beep_go_sfx = $CanvasLayer/BeepGoSFX if has_node("CanvasLayer/BeepGoSFX") else null
-
+# Racer and camera node references
 @onready var player1 = $Background/Player1 if has_node("Background/Player1") else null
 @onready var player2 = $Background/Player2 if has_node("Background/Player2") else null
 @onready var dynamic_camera = $Background/DynamicCamera if has_node("Background/DynamicCamera") else null
@@ -36,10 +38,11 @@ var speed_panel_p2: Control = null
 
 
 func _ready() -> void:
+	# Fetch max laps setting from global GameManager
 	if "max_laps" in GameManager:
 		max_laps = GameManager.max_laps
 
-	# Safe UI node discovery
+	# Locate HUD elements safely using multiple potential paths
 	p1_speed_label = _get_ui_node(["CanvasLayer/SpeedPanel1/SpeedLabel", "CanvasLayer/SpeedPanelP1/SpeedLabel"])
 	p1_speed_bar = _get_ui_node(["CanvasLayer/SpeedPanel1/BarBG/BarFill", "CanvasLayer/SpeedPanelP1/BarBG/BarFill"])
 	
@@ -70,10 +73,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	# Keep HUD speedometers updated each frame
 	_update_speedometer(player1, p1_speed_label, p1_speed_bar)
 	_update_speedometer(player2, p2_speed_label, p2_speed_bar)
 
-
+# Updates speedometer text and fills the speed bar relative to vehicle speed
 func _update_speedometer(car, speed_label, speed_bar) -> void:
 	if not car or not is_instance_valid(car):
 		return
@@ -90,8 +94,9 @@ func _update_speedometer(car, speed_label, speed_bar) -> void:
 		var bg_width: float = speed_bar.get_parent().size.x
 		speed_bar.size.x = bg_width * ratio
 
-
+# Freezes racer input and runs 3-2-1 countdown sequence before enabling controls
 func _start_countdown() -> void:
+	# Temporarily disable input for both racers
 	if player1:
 		if "input_enable" in player1: player1.input_enable = false
 		elif "input_enabled" in player1: player1.input_enabled = false
@@ -105,6 +110,7 @@ func _start_countdown() -> void:
 	if countdown_label:
 		countdown_label.show()
 		
+	# Count down from 3 to 1 with sound effects
 	for n in ["3", "2", "1"]:
 		if countdown_label:
 			countdown_label.text = n
@@ -113,6 +119,7 @@ func _start_countdown() -> void:
 			beep_tick_sfx.play()
 		await get_tree().create_timer(0.8).timeout
 	
+	# Display "Go!" and re-enable inputs
 	if countdown_label:
 		countdown_label.text = "Go!"
 		countdown_label.modulate = Color(0.3, 1.0, 0.3, 1)
@@ -133,16 +140,16 @@ func _start_countdown() -> void:
 	if countdown_label:
 		countdown_label.hide()
 
-
+# Updates lap count display on the HUD
 func update_lap_ui() -> void:
 	if label:
 		label.text = "Lap: %d / %d" % [current_lap, max_laps]
 
-
+# Changes master volume when slider is moved
 func _on_volume_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
 
-
+# Toggles background music playback
 func _on_music_button_pressed() -> void:
 	if music_player:
 		if music_player.playing:
@@ -152,7 +159,7 @@ func _on_music_button_pressed() -> void:
 			music_player.play()
 			if music_button: music_button.text = "Pause Music"
 
-
+# Finds and returns the car object associated with an Area2D
 func _get_car(area: Area2D):
 	if area is Car or area is Car2:
 		return area
@@ -160,7 +167,7 @@ func _get_car(area: Area2D):
 		return area.get_parent()
 	return null
 
-
+# Triggers wall bounce physics when a vehicle hits track boundaries
 func _on_track_collision_area_entered(area: Area2D) -> void:
 	if area.has_method("hit_boundary"):
 		area.hit_boundary()

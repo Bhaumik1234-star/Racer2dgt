@@ -80,9 +80,6 @@ func _on_area_entered(area: Area2D) -> void:
 				if win_sfx:
 					win_sfx.play()
 
-				# Unlock next level automatically when race completes
-				GameManager.unlock_next_level_if_earned(GameManager.current_level)
-
 				await get_tree().create_timer(1.4).timeout
 				
 				if ResourceLoader.exists("res://Scenes/WinScene.tscn"):

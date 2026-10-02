@@ -1,8 +1,8 @@
 extends Area2D
 class_name Car2
 
+# Player & movement setup
 @export var player_prefix: String = "p2"
-
 @export var max_speed: float = 480.0
 @export var reverse_speed: float = 180.0
 @export var acceleration: float = 400.0
@@ -10,21 +10,25 @@ class_name Car2
 @export var steer_strength: float = 3.4
 @export var min_steer_factor: float = 0.7
 
-## Grip: how quickly actual movement catches up to the direction the car is facing.
+	# Grip: how quickly actual movement catches up to the direction the car is facing.
 @export var grip: float = 9.0
-## Minimum time (seconds) holding a drift before releasing it gives a boost.
+# Minimum time (seconds) holding a drift before releasing it gives a boost.
 @export var min_drift_time: float = 0.35
-## Angle (radians) between facing and movement direction that counts as drifting.
+# Angle (radians) between facing and movement direction that counts as drifting.
 @export var drift_angle_threshold: float = 0.22
 @export var boost_strength: float = 260.0
 @export var boost_duration: float = 0.6
 
-@export var bump_force: float = 320.0
-@export var wall_bounce_loss: float = 0.45
-@export var wall_pushback: float = 26.0
+# Collision physics parameters
+@export var bump_force: float = 320.0 # Knockback force when hitting other vehicles
+@export var wall_bounce_loss: float = 0.45  # Speed percentage retained on wall collision
+@export var wall_pushback: float = 26.0  # Separation distance applied after wall impact
 
+# Sprite and FX node references
 @export var car_texture: Texture2D
 @export var bike_texture: Texture2D
+
+# Textures
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var drift_particles: GPUParticles2D = $DriftParticles if has_node("DriftParticles") else null
 
@@ -33,25 +37,28 @@ class_name Car2
 @onready var boost_sfx: AudioStreamPlayer2D = $BoostSFX if has_node("BoostSFX") else null
 @onready var crash_sfx: AudioStreamPlayer2D = $CrashSFX if has_node("CrashSFX") else null
 
+# Runtime movement state
 var _throttle: float = 0.0
 var _steer: float = 0.0
 var _velocity: float = 0.0
 var speed_multiplier: float = 1.0
 var input_enabled: bool = true
 
+# Drift and boost tracking
 var move_velocity: Vector2 = Vector2.ZERO
 var drift_time: float = 0.0
 var is_drifting: bool = false
 var boost_timer: float = 0.0
 var boost_speed: float = 0.0
 
+# Track and anti-cheat state
 var spawn_position: Vector2
 var spawn_rotation: float
-
 var passed_halfway: bool = false
 
 
 func _ready() -> void:
+	# Configure vehicle sprite texture and apply specific scales
 	if "selected_vehicle" in GameManager and GameManager.selected_vehicle == "bike":
 		if bike_texture and sprite:
 			sprite.texture = bike_texture
@@ -70,21 +77,27 @@ func _ready() -> void:
 			sprite.texture = car_texture
 			sprite.scale = Vector2(0.20, 0.20) # Scaled red car down significantly
 
+	# Apply custom vehicle tint color if configured in GameManager
 	if "p1_color" in GameManager and sprite:
 		sprite.modulate = GameManager.p1_color
-
+		
+	# Store starting position and orientation for track resets
 	spawn_position = global_position
 	spawn_rotation = rotation
 
+	# Register vehicle in global racers group
 	add_to_group("racers")
+	
 	if GameManager.selected_vehicle == "bike" and bike_texture:
 		sprite.texture = bike_texture
 	elif car_texture:
 		sprite.texture = car_texture
 
+	# Apply custom color tint for Player 2
 	if "p2_color" in GameManager:
 		sprite.modulate = GameManager.p2_color
 
+	# Store starting transform for track resets
 	spawn_position = global_position
 	spawn_rotation = rotation
 
@@ -95,6 +108,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	# Read player input axes
 	if not input_enabled:
 		_throttle = 0.0
 		_steer = 0.0
@@ -110,6 +124,7 @@ func _physics_process(delta: float) -> void:
 	_update_engine_sfx()
 
 
+# Calculates forward/reverse acceleration, deceleration, and speed limits
 func apply_throttle(delta: float) -> void:
 	if _throttle > 0:
 		_velocity += acceleration * delta
@@ -124,7 +139,7 @@ func apply_throttle(delta: float) -> void:
 		max_speed * speed_multiplier
 	)
 
-
+# Rotates the vehicle based on steering input and movement direction
 func apply_rotation(delta: float) -> void:
 	if abs(_velocity) > 10:
 		rotate(
@@ -134,13 +149,14 @@ func apply_rotation(delta: float) -> void:
 			sign(_velocity)
 		)
 
-
+# Updates movement momentum, checks drift conditions, and applies boosts
 func _update_drift_and_move(delta: float) -> void:
 	var forward: Vector2 = transform.x
 	var target_velocity: Vector2 = forward * _velocity
-
+	# Lerp actual velocity vector toward facing direction to simulate tire grip
 	move_velocity = move_velocity.lerp(target_velocity, clamp(grip * delta, 0.0, 1.0))
-
+	
+	# Check drift condition
 	if move_velocity.length() > 40.0 and abs(_velocity) > max_speed * 0.35:
 		var angle_diff = abs(move_velocity.normalized().angle_to(forward))
 		if angle_diff > drift_angle_threshold:
@@ -153,7 +169,8 @@ func _update_drift_and_move(delta: float) -> void:
 
 	if drift_particles:
 		drift_particles.emitting = is_drifting
-
+	
+	# Apply active post-drift boost vector
 	var extra := Vector2.ZERO
 	if boost_timer > 0.0:
 		boost_timer -= delta
@@ -161,7 +178,7 @@ func _update_drift_and_move(delta: float) -> void:
 
 	position += (move_velocity + extra) * delta
 
-
+# Exits drift state and triggers a speed boost if held long enough
 func _end_drift() -> void:
 	if is_drifting and drift_time >= min_drift_time:
 		boost_timer = boost_duration
@@ -173,7 +190,7 @@ func _end_drift() -> void:
 	if drift_sfx and drift_sfx.playing:
 		drift_sfx.stop()
 
-
+# Adjusts pitch and volume of engine audio based on speed ratio	
 func _update_engine_sfx() -> void:
 	if not engine_sfx:
 		return
@@ -187,7 +204,7 @@ func _update_engine_sfx() -> void:
 		elif not is_drifting and drift_sfx.playing:
 			drift_sfx.stop()
 
-
+# Pushes vehicle away from wall boundaries and dampens speed upon impact
 func hit_boundary() -> void:
 	var away: Vector2 = -move_velocity
 	if away.length() < 1.0:
@@ -200,7 +217,7 @@ func hit_boundary() -> void:
 	if crash_sfx:
 		crash_sfx.play()
 
-
+# Applies knockback physics when colliding with another vehicle
 func _bump(other: Node2D) -> void:
 	var away: Vector2 = global_position - other.global_position
 	if away.length() < 1.0:
@@ -210,15 +227,15 @@ func _bump(other: Node2D) -> void:
 	_velocity = move_velocity.length() * 0.4
 	if crash_sfx:
 		crash_sfx.play()
-
+	# Reciprocate knockback force on the hit vehicle
 	if other.has_method("_receive_bump"):
 		other._receive_bump(-away)
 
-
+# Receives knockback force from another vehicle
 func _receive_bump(dir: Vector2) -> void:
 	move_velocity += dir * bump_force
 
-
+# Handles track collision trigger areas (boundaries, off-road grass, other racers)
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("boundary"):
 		hit_boundary()
@@ -227,7 +244,7 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area.is_in_group("racers") and area != self:
 		_bump(area)
 
-
+# Restores speed multiplier when leaving off-road areas
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("grass"):
 		speed_multiplier = 1.0

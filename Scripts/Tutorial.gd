@@ -1,5 +1,7 @@
 extends Control
+# Manages the tutorial / how-to-play screen, dynamically creating information cards and managing navigation
 
+# Array containing all gameplay instruction cards to display
 const SECTIONS := [
 	{"title": "PLAYER 1 CONTROLS", "body": "W \u2014 Accelerate\nS \u2014 Reverse / Brake\nA / D \u2014 Steer Left / Right"},
 	{"title": "PLAYER 2 CONTROLS", "body": "\u2191 Up \u2014 Accelerate\n\u2193 Down \u2014 Reverse / Brake\n\u2190 / \u2192 \u2014 Steer Left / Right"},
@@ -9,22 +11,26 @@ const SECTIONS := [
 	{"title": "LAPS & WINNING", "body": "First to complete all the laps wins the race. Beat a level to unlock the next one!"},
 ]
 
+# UI and Audio node references
 @onready var list: VBoxContainer = $VBoxContainer/ScrollContainer/SectionList
 @onready var music_player: AudioStreamPlayer = $MusicPlayer if has_node("MusicPlayer") else null
 @onready var click_sfx: AudioStreamPlayer = $ClickSFX if has_node("ClickSFX") else null
 
 func _ready() -> void:
+	# Build and add a visual card for each tutorial section
 	for section in SECTIONS:
 		list.add_child(_build_section(section))
 
-		
+	# Play background music on a loop if available
 	if music_player:
 		music_player.finished.connect(func(): music_player.play())
 		music_player.play()
-		
+	
+# Dynamically creates a styled UI panel container for a tutorial topic
 func _build_section(section: Dictionary) -> Control:
 	var card := PanelContainer.new()
 	
+	# Create background style for the card container
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.1, 0.1, 0.14, 0.85)
 	style.corner_radius_top_left = 12
@@ -46,12 +52,14 @@ func _build_section(section: Dictionary) -> Control:
 	vbox.add_theme_constant_override("separation", 6)
 	card.add_child(vbox)
 	
+	# Add title label
 	var title = Label.new()
 	title.text = section["title"]
 	title.add_theme_font_size_override("font_size", 16)
 	title.add_theme_color_override("font_color", Color(1.0, 0.75, 0.2, 1))
 	vbox.add_child(title)
 	
+	# Add title label
 	var body := Label.new()
 	body.text = section["body"]
 	body.add_theme_font_size_override("font_size", 16)
@@ -59,7 +67,8 @@ func _build_section(section: Dictionary) -> Control:
 	vbox.add_child(body)
 	
 	return card
-	
+
+# Starts the pending level race or returns to level selection
 func _on_star_race_button_pressed() -> void:
 	if click_sfx:
 		click_sfx.play()
@@ -69,7 +78,7 @@ func _on_star_race_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://Scenes/LevelSelect.tscn")
 
 
-
+# Returns to level selection if a track was queued, otherwise returns to main menu
 func _on_back_button_pressed() -> void:
 	if click_sfx:
 		click_sfx.play()
