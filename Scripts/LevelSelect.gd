@@ -3,9 +3,9 @@ extends Control
 
 # List of all available track levels and their details
 const LEVELS := [
-	{"num": 1, "name": "Sakura Circuit", "sub": "Japan • Technical", "scene": "res://Scenes/Track.tscn", "thumb": "res://Maps/Thumbs/Level1.png"},
-	{"num": 2, "name": "Daytona Oval", "sub": "USA-style • Fast & Simple", "scene": "res://Scenes/Track_Level2.tscn", "thumb": "res://Maps/Thumbs/Level2.png"},
-	{"num": 3, "name": "Sahara Chicane", "sub": "Desert • S-Curves", "scene": "res://Scenes/Track_Level3.tscn", "thumb": "res://Maps/Thumbs/Level3.png"},
+	{"num": 1, "name": "Sakura Circuit", "sub": "Japan • Technical", "scene": "res://Scenes/Track.tscn", "thumb": "res://Maps/Thumbs/level1.png"},
+	{"num": 2, "name": "Daytona Oval", "sub": "USA-style • Fast & Simple", "scene": "res://Scenes/Track_Level2.tscn", "thumb": "res://Maps/Thumbs/level2.png"},
+	{"num": 3, "name": "Sahara Chicane", "sub": "Desert • S-Curves", "scene": "res://Scenes/Track_Level3.tscn", "thumb": "res://Maps/Thumbs/level3.png"},
 ]
 
 # UI Node References
